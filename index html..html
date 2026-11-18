@@ -1,0 +1,3034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADVERTISEMENT WORLD – Learn English Through Advertising!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Poppins', 'sans-serif'],
+            body: ['Nunito', 'sans-serif'],
+          },
+          colors: {
+            brandBlue: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            brandYellow: {
+              300: '#fde047',
+              400: '#facc15',
+              500: '#eab308',
+            },
+            brandOrange: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f0f7ff;
+      color: #1e293b;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+    /* Custom Animations */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(-2deg); }
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.5); }
+      50% { box-shadow: 0 0 0 12px rgba(249, 115, 22, 0); }
+    }
+    .animate-float { animation: floatSlow 4s ease-in-out infinite; }
+    .animate-float-rev { animation: floatReverse 4.5s ease-in-out infinite; }
+    .page-enter { animation: fadeSlideIn 0.35s ease-out forwards; }
+    .btn-pulse { animation: pulseGlow 2.2s infinite; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #e0f2fe; }
+    ::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1d4ed8; }
+
+    /* Ad Pattern Background */
+    .ad-bg-pattern {
+      background-image: radial-gradient(#bae6fd 1.5px, transparent 1.5px), radial-gradient(#fde68a 1.5px, #f0f7ff 1.5px);
+      background-size: 36px 36px;
+      background-position: 0 0, 18px 18px;
+    }
+
+    /* Print Styles for Poster & LKPD */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #print-area, #print-area * {
+        visibility: visible;
+      }
+      #print-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        padding: 20px !important;
+        box-shadow: none !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="ad-bg-pattern min-h-screen flex flex-col">
+
+  <!-- ==================== GLOBAL TOAST / MESSAGE BOX ==================== -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ==================== AUDIO UNSUPPORTED BANNER ==================== -->
+  <div id="tts-fallback-banner" class="hidden bg-amber-100 border-b-2 border-amber-400 text-amber-900 px-4 py-2 text-sm font-semibold text-center">
+    ⚠️ Text-to-Speech voice synthesis is not supported or restricted on this browser. Please read the on-screen text and captions!
+  </div>
+
+  <!-- ==================== TOP NAVIGATION BAR (Shown after Welcome) ==================== -->
+  <header id="global-navbar" class="hidden sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-4 border-brandYellow-400 shadow-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5">
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <!-- Brand Logo -->
+        <div class="flex items-center gap-2.5 cursor-pointer" onclick="navigateTo('welcome')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brandBlue-500 to-brandBlue-700 flex items-center justify-center text-white font-heading font-black text-lg shadow">
+            📢
+          </div>
+          <div>
+            <h1 class="font-heading font-extrabold text-sm sm:text-base text-brandBlue-800 leading-tight">ADVERTISEMENT WORLD</h1>
+            <p class="text-[11px] font-bold text-brandOrange-600">Phase E • Grade X • Kurikulum Merdeka</p>
+          </div>
+        </div>
+
+        <!-- Primary Navigation Buttons (Home, Back, Next, Menu) -->
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <button onclick="navigateTo('welcome')" title="Home / Welcome" class="px-2.5 py-1.5 rounded-xl bg-brandBlue-50 hover:bg-brandBlue-100 text-brandBlue-700 font-bold text-xs sm:text-sm flex items-center gap-1 transition shadow-sm border border-brandBlue-200">
+            <span>🏠</span><span class="hidden md:inline">Home</span>
+          </button>
+          <button id="nav-back-btn" onclick="navigatePrev()" title="Previous Section" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-1 transition shadow-sm border border-slate-200">
+            <span>⬅️</span><span class="hidden md:inline">Back</span>
+          </button>
+          <button id="nav-next-btn" onclick="navigateNext()" title="Next Section" class="px-2.5 py-1.5 rounded-xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-xs sm:text-sm flex items-center gap-1 transition shadow-sm">
+            <span class="hidden md:inline">Next</span><span>➡️</span>
+          </button>
+          <button onclick="toggleMenuDrawer()" title="All Menus" class="px-3 py-1.5 rounded-xl bg-brandYellow-400 hover:bg-brandYellow-500 text-slate-900 font-extrabold text-xs sm:text-sm flex items-center gap-1.5 transition shadow-sm">
+            <span>☰</span><span>Menu</span>
+          </button>
+        </div>
+
+        <!-- Global Audio Controls -->
+        <div class="flex items-center gap-1.5 bg-blue-50 px-2.5 py-1 rounded-2xl border border-blue-200">
+          <span class="text-[11px] font-extrabold text-brandBlue-800 hidden lg:inline">AUDIO:</span>
+          <button onclick="resumeSpeech()" title="Play / Resume Speech" class="p-1.5 rounded-lg bg-white hover:bg-blue-100 text-brandBlue-700 text-xs font-bold shadow-sm" aria-label="Play Audio">▶️</button>
+          <button onclick="pauseSpeech()" title="Pause Speech" class="p-1.5 rounded-lg bg-white hover:bg-blue-100 text-brandBlue-700 text-xs font-bold shadow-sm" aria-label="Pause Audio">⏸️</button>
+          <button onclick="stopSpeech()" title="Stop Speech" class="p-1.5 rounded-lg bg-white hover:bg-blue-100 text-red-600 text-xs font-bold shadow-sm" aria-label="Stop Audio">⏹️</button>
+          <div class="h-4 w-[1px] bg-blue-200 mx-0.5"></div>
+          <button id="btn-mute" onclick="toggleMute()" title="Mute / Unmute Sound Effects & Speech" class="px-2 py-1 rounded-lg bg-white hover:bg-blue-100 text-xs font-bold text-slate-700 shadow-sm">
+            🔊
+          </button>
+          <button id="btn-bgm" onclick="toggleBGM()" title="Toggle Background Music" class="px-2 py-1 rounded-lg bg-white hover:bg-amber-100 text-xs font-bold text-slate-700 shadow-sm">
+            🎵 BGM: OFF
+          </button>
+        </div>
+      </div>
+
+      <!-- Student Progress Bar -->
+      <div class="mt-2 pt-1.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-2 flex-1 min-w-[200px]">
+          <span class="font-extrabold text-brandBlue-800 whitespace-nowrap">📊 Progress:</span>
+          <div class="w-full max-w-xs bg-slate-200 rounded-full h-3 overflow-hidden p-0.5">
+            <div id="global-progress-bar" class="bg-gradient-to-r from-brandBlue-500 via-brandOrange-500 to-brandYellow-400 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+          </div>
+          <span id="global-progress-text" class="font-extrabold text-brandOrange-600">0%</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-certificate" onclick="openCertificateModal()" class="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white font-bold shadow-sm hover:opacity-95 transition flex items-center gap-1">
+            <span>🏆</span><span>Certificate</span>
+          </button>
+          <button onclick="confirmResetProgress()" class="px-2 py-0.5 rounded-full bg-slate-200 hover:bg-red-100 text-slate-600 hover:text-red-700 font-bold transition">
+            ↺ Reset
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== QUICK MENU DRAWER / MODAL ==================== -->
+  <div id="menu-drawer" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border-4 border-brandYellow-400 page-enter">
+      <div class="flex items-center justify-between mb-4 pb-3 border-b-2 border-slate-100">
+        <div>
+          <h2 class="font-heading font-extrabold text-xl sm:text-2xl text-brandBlue-800">🧭 NAVIGATION MENU</h2>
+          <p class="text-xs text-slate-500 font-semibold">Select a learning module to explore Advertisement World</p>
+        </div>
+        <button onclick="toggleMenuDrawer()" class="w-10 h-10 rounded-full bg-red-100 hover:bg-red-200 text-red-600 font-black text-lg flex items-center justify-center">✕</button>
+      </div>
+      <div id="menu-drawer-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CERTIFICATE MODAL ==================== -->
+  <div id="certificate-modal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border-4 border-brandYellow-400 my-auto">
+      <div class="flex justify-between items-center mb-4 no-print">
+        <h3 class="font-heading font-extrabold text-lg text-brandBlue-800">🏆 Certificate of Completion</h3>
+        <button onclick="closeCertificateModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-red-100 text-slate-700 hover:text-red-600 font-bold">✕</button>
+      </div>
+
+      <div class="mb-4 flex flex-col sm:flex-row gap-3 items-center no-print bg-blue-50 p-3 rounded-2xl border border-blue-200">
+        <label class="text-xs font-extrabold text-brandBlue-800 whitespace-nowrap">Enter Student Name:</label>
+        <input id="cert-student-name" type="text" placeholder="Type your full name here..." oninput="updateCertificatePreview()" class="w-full px-3 py-2 rounded-xl border border-blue-300 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-brandBlue-500" />
+        <button onclick="printElement('certificate-printable')" class="px-4 py-2 rounded-xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-xs whitespace-nowrap shadow">
+          🖨️ Print Certificate
+        </button>
+      </div>
+
+      <!-- Printable Certificate -->
+      <div id="certificate-printable" class="relative bg-gradient-to-br from-blue-50 via-white to-amber-50 border-8 border-double border-brandBlue-600 rounded-2xl p-6 sm:p-10 text-center shadow-inner">
+        <div class="flex justify-center mb-2 text-4xl">🏅</div>
+        <p class="text-xs font-extrabold tracking-widest text-brandOrange-600 uppercase">SMK PERINTIS • KURIKULUM MERDEKA FASE E</p>
+        <h2 class="font-heading font-black text-2xl sm:text-4xl text-brandBlue-800 mt-1">CERTIFICATE OF ACHIEVEMENT</h2>
+        <p class="text-sm text-slate-600 mt-3 font-semibold">This certificate is proudly presented to:</p>
+        <div id="cert-display-name" class="font-heading font-extrabold text-2xl sm:text-3xl text-brandOrange-600 border-b-2 border-brandBlue-400 inline-block px-8 py-1 my-3">
+          Outstanding Student
+        </div>
+        <p class="text-sm sm:text-base text-slate-700 max-w-xl mx-auto leading-relaxed">
+          For successfully exploring and completing the Interactive English Learning Media
+          <strong class="text-brandBlue-800">"ADVERTISEMENT WORLD – Learn English Through Advertising!"</strong>
+          (Grade X English Subject – Advertisement Material).
+        </p>
+        <div class="mt-4 inline-flex items-center gap-3 bg-white px-4 py-2 rounded-full border border-amber-300 shadow-sm">
+          <span class="text-xs font-bold text-slate-600">Completion Progress:</span>
+          <span id="cert-progress-badge" class="text-sm font-black text-brandBlue-700">0%</span>
+        </div>
+        <div class="mt-8 pt-4 flex flex-col sm:flex-row justify-between items-center gap-6 px-4 text-xs text-slate-600">
+          <div>
+            <p class="font-bold text-slate-800" id="cert-date"></p>
+            <p>Date of Completion</p>
+          </div>
+          <div class="text-center">
+            <div class="font-heading font-bold text-brandBlue-800 text-sm border-b border-slate-400 px-4 pb-1">Intan Liana, S.Pd.</div>
+            <p class="mt-1 font-semibold">English Teacher • SMK Perintis</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CONTENT AREA ==================== -->
+  <main id="app-container" class="flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 py-6">
+    <!-- Dynamic Page Content Rendered Here -->
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-brandBlue-900 text-white py-4 px-4 mt-8 border-t-4 border-brandYellow-400">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-blue-100">
+      <div class="font-bold">
+        📢 <span class="text-brandYellow-300">ADVERTISEMENT WORLD</span> — Media Pembelajaran Interaktif Bahasa Inggris Kelas X Fase E
+      </div>
+      <div>
+        Developed by <strong class="text-white">Intan Liana, S.Pd.</strong> • <span class="text-brandOrange-400 font-bold">SMK Perintis</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT APPLICATION LOGIC ==================== -->
+  <script>
+    /*************************************************************************
+     * 1. STATE MANAGEMENT & LOCALSTORAGE PERSISTENCE
+     *************************************************************************/
+    const MENU_ORDER = [
+      'welcome',
+      'petunjuk',
+      'materi',
+      'simulasi',
+      'praktikum',
+      'game',
+      'lkpd',
+      'evaluasi',
+      'pengembang'
+    ];
+
+    const MENU_META = [
+      { id: 'materi', title: 'MATERI', subtitle: 'Learning Materials', icon: '📚', color: 'from-blue-500 to-blue-700' },
+      { id: 'simulasi', title: 'SIMULASI', subtitle: 'Explore Ads!', icon: '🔍', color: 'from-orange-400 to-orange-600' },
+      { id: 'praktikum', title: 'PRAKTIKUM', subtitle: 'Create Your Ad!', icon: '🎨', color: 'from-amber-400 to-yellow-500' },
+      { id: 'game', title: 'GAME', subtitle: '4 Interactive Games', icon: '🎮', color: 'from-sky-500 to-indigo-600' },
+      { id: 'lkpd', title: 'LKPD', subtitle: 'Student Worksheets', icon: '📝', color: 'from-emerald-500 to-teal-600' },
+      { id: 'evaluasi', title: 'EVALUASI', subtitle: 'Final Test & Rubric', icon: '🏆', color: 'from-rose-500 to-orange-600' },
+      { id: 'pengembang', title: 'PENGEMBANG', subtitle: 'Developer Profile', icon: '👩‍🏫', color: 'from-indigo-500 to-blue-700' },
+      { id: 'petunjuk', title: 'PETUNJUK', subtitle: 'User Guide', icon: '💡', color: 'from-yellow-400 to-amber-500' }
+    ];
+
+    const DEFAULT_STATE = {
+      currentPage: 'welcome',
+      materiTab: 0,
+      completedSteps: {}, // e.g., materi_0..6, simulasi_0..3, praktikum, game_1..4, lkpd_1, lkpd_2, evaluasi
+      studentName: '',
+      lkpd1: { studentName: '', studentClass: '', product: '', headline: '', slogan: '', purpose: '', audience: '', persuasive: '' },
+      lkpd2: { studentName: '', studentClass: '', product: '', audience: '', headline: '', slogan: '', body: '', persuasive: '', visual: '' },
+      posterDraft: {
+        category: 'beverage',
+        theme: 'blue',
+        productName: 'ChocoBoost Energy Milk',
+        headline: 'WAKE UP YOUR BRAIN POWER!',
+        slogan: 'Sip the Energy, Own the Day!',
+        description: 'Rich chocolate milk packed with Vitamin D, Calcium, and natural oat energy for active students.',
+        persuasive: '100% Fresh, Delicious, Special 30% Student Discount!',
+        audience: 'High School & Vocational Students (Ages 15-18)',
+        cta: 'GRAB YOUR BOTTLE TODAY!'
+      }
+    };
+
+    let appState = loadState();
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem('adv_world_state_v1');
+        if (saved) {
+          return { ...DEFAULT_STATE, ...JSON.parse(saved) };
+        }
+      } catch (e) {
+        console.warn('LocalStorage unavailable:', e);
+      }
+      return JSON.parse(JSON.stringify(DEFAULT_STATE));
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem('adv_world_state_v1', JSON.stringify(appState));
+      } catch (e) {
+        console.warn('Could not save state:', e);
+      }
+      updateProgressUI();
+    }
+
+    function markStepCompleted(stepKey) {
+      if (!appState.completedSteps[stepKey]) {
+        appState.completedSteps[stepKey] = true;
+        saveState();
+      }
+    }
+
+    function calculateProgressPercent() {
+      // Total milestones: 7 materi + 4 simulasi + 1 praktikum + 4 games + 2 lkpd + 1 evaluasi = 19 milestones
+      const totalMilestones = 19;
+      const done = Object.keys(appState.completedSteps).length;
+      return Math.min(100, Math.round((done / totalMilestones) * 100));
+    }
+
+    function updateProgressUI() {
+      const pct = calculateProgressPercent();
+      const bar = document.getElementById('global-progress-bar');
+      const txt = document.getElementById('global-progress-text');
+      const certBadge = document.getElementById('cert-progress-badge');
+      if (bar) bar.style.width = pct + '%';
+      if (txt) txt.textContent = pct + '%';
+      if (certBadge) certBadge.textContent = pct + '%';
+    }
+
+    function confirmResetProgress() {
+      // Custom confirmation toast/banner instead of window.confirm()
+      const existing = document.getElementById('reset-confirm-box');
+      if (existing) existing.remove();
+      const box = document.createElement('div');
+      box.id = 'reset-confirm-box';
+      box.className = 'fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center p-4';
+      box.innerHTML = `
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full border-4 border-brandOrange-500 shadow-2xl text-center">
+          <div class="text-4xl mb-2">⚠️</div>
+          <h3 class="font-heading font-extrabold text-lg text-slate-800">Reset Learning Progress?</h3>
+          <p class="text-xs text-slate-600 mt-1 mb-4">All saved scores, LKPD answers, and completion progress will be cleared.</p>
+          <div class="flex gap-2 justify-center">
+            <button onclick="document.getElementById('reset-confirm-box').remove()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 font-bold text-xs text-slate-700">Cancel</button>
+            <button onclick="executeResetProgress()" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 font-bold text-xs text-white">Yes, Reset All</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(box);
+    }
+
+    function executeResetProgress() {
+      localStorage.removeItem('adv_world_state_v1');
+      appState = JSON.parse(JSON.stringify(DEFAULT_STATE));
+      const box = document.getElementById('reset-confirm-box');
+      if (box) box.remove();
+      showToast('Progress has been reset!', 'info');
+      navigateTo('welcome');
+    }
+
+    /*************************************************************************
+     * 2. AUDIO ENGINE: WEB SPEECH API (TTS) & WEB AUDIO API (SFX + BGM)
+     *************************************************************************/
+    let isMuted = false;
+    let isBgmPlaying = false;
+    let audioCtx = null;
+    let bgmInterval = null;
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playSFX(type) {
+      if (isMuted) return;
+      try {
+        initAudioContext();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'correct') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.setValueAtTime(659.25, now + 0.09); // E5
+          osc.frequency.setValueAtTime(783.99, now + 0.18); // G5
+          gain.gain.setValueAtTime(0.22, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+          osc.start(now);
+          osc.stop(now + 0.43);
+        } else if (type === 'wrong') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          osc.frequency.linearRampToValueAtTime(150, now + 0.28);
+          gain.gain.setValueAtTime(0.16, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
+          osc.start(now);
+          osc.stop(now + 0.33);
+        } else if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(600, now);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'win') {
+          const notes = [523.25, 659.25, 783.99, 1046.5];
+          notes.forEach((freq, idx) => {
+            const o = audioCtx.createOscillator();
+            const g = audioCtx.createGain();
+            o.type = 'triangle';
+            o.connect(g);
+            g.connect(audioCtx.destination);
+            o.frequency.setValueAtTime(freq, now + idx * 0.11);
+            g.gain.setValueAtTime(0.2, now + idx * 0.11);
+            g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.11 + 0.35);
+            o.start(now + idx * 0.11);
+            o.stop(now + idx * 0.11 + 0.36);
+          });
+        }
+      } catch (e) {
+        console.warn('SFX error:', e);
+      }
+    }
+
+    function toggleBGM() {
+      const btn = document.getElementById('btn-bgm');
+      if (isBgmPlaying) {
+        isBgmPlaying = false;
+        clearInterval(bgmInterval);
+        if (btn) btn.textContent = '🎵 BGM: OFF';
+        showToast('Background music turned OFF', 'info');
+      } else {
+        if (isMuted) {
+          showToast('Unmute audio first to play BGM', 'warning');
+          return;
+        }
+        initAudioContext();
+        isBgmPlaying = true;
+        if (btn) btn.textContent = '🎵 BGM: ON';
+        showToast('Background music turned ON', 'success');
+        const melody = [261.63, 329.63, 392.00, 329.63, 293.66, 349.23, 440.00, 392.00];
+        let step = 0;
+        bgmInterval = setInterval(() => {
+          if (!isBgmPlaying || isMuted || !audioCtx) return;
+          const now = audioCtx.currentTime;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(melody[step % melody.length], now);
+          gain.gain.setValueAtTime(0.035, now);
+          gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.45);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.46);
+          step++;
+        }, 520);
+      }
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      const btn = document.getElementById('btn-mute');
+      if (btn) btn.textContent = isMuted ? '🔇' : '🔊';
+      if (isMuted) {
+        stopSpeech();
+        if (isBgmPlaying) {
+          isBgmPlaying = false;
+          clearInterval(bgmInterval);
+          const bgmBtn = document.getElementById('btn-bgm');
+          if (bgmBtn) bgmBtn.textContent = '🎵 BGM: OFF';
+        }
+        showToast('Audio Muted', 'info');
+      } else {
+        showToast('Audio Unmuted', 'success');
+      }
+    }
+
+    function speakText(text, lang = 'en-US') {
+      if (isMuted) {
+        showToast('Audio is currently muted. Click 🔊 to unmute.', 'warning');
+        return;
+      }
+      if (!('speechSynthesis' in window)) {
+        const banner = document.getElementById('tts-fallback-banner');
+        if (banner) banner.classList.remove('hidden');
+        showToast('Text-to-Speech is not supported in this browser.', 'warning');
+        return;
+      }
+      try {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang;
+        utterance.rate = lang === 'en-US' ? 0.94 : 1.0;
+        utterance.pitch = 1.02;
+
+        const voices = window.speechSynthesis.getVoices();
+        const matchedVoice = voices.find(v => v.lang.toLowerCase().includes(lang.toLowerCase().split('-')[0]));
+        if (matchedVoice) {
+          utterance.voice = matchedVoice;
+        }
+        window.speechSynthesis.speak(utterance);
+        showToast(lang === 'en-US' ? '🔊 Playing English Audio...' : '🔊 Memutar Audio Bahasa Indonesia...', 'info');
+      } catch (e) {
+        console.warn('Speech error:', e);
+        const banner = document.getElementById('tts-fallback-banner');
+        if (banner) banner.classList.remove('hidden');
+      }
+    }
+
+    function pauseSpeech() {
+      if ('speechSynthesis' in window && window.speechSynthesis.speaking) {
+        window.speechSynthesis.pause();
+        showToast('⏸️ Audio paused', 'info');
+      }
+    }
+
+    function resumeSpeech() {
+      if ('speechSynthesis' in window && window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        showToast('▶️ Audio resumed', 'info');
+      }
+    }
+
+    function stopSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    // Check speechSynthesis availability on load (without auto-playing)
+    window.addEventListener('load', () => {
+      if (!('speechSynthesis' in window)) {
+        const banner = document.getElementById('tts-fallback-banner');
+        if (banner) banner.classList.remove('hidden');
+      } else {
+        window.speechSynthesis.getVoices();
+      }
+    });
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+      const colors = {
+        info: 'bg-brandBlue-800 text-white border-brandYellow-400',
+        success: 'bg-emerald-600 text-white border-emerald-300',
+        warning: 'bg-brandOrange-600 text-white border-amber-300'
+      };
+      const el = document.createElement('div');
+      el.className = `px-4 py-2.5 rounded-2xl border-2 shadow-lg text-xs sm:text-sm font-bold transition-all duration-300 ${colors[type] || colors.info}`;
+      el.textContent = message;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        setTimeout(() => el.remove(), 300);
+      }, 2400);
+    }
+
+    /*************************************************************************
+     * 3. CUSTOM INLINE SVG ILLUSTRATIONS (100% RELIABLE OFFLINE & ONLINE)
+     *************************************************************************/
+    function getAdSVG(type) {
+      const svgs = {
+        milk: `
+          <svg viewBox="0 0 240 190" class="w-full h-44 rounded-2xl shadow-inner bg-gradient-to-b from-sky-200 to-blue-50 p-2">
+            <circle cx="195" cy="35" r="22" fill="#facc15" opacity="0.85"/>
+            <path d="M0 155 Q60 135 120 155 T240 150 L240 190 L0 190 Z" fill="#4ade80"/>
+            <!-- Milk Carton -->
+            <g transform="translate(75, 22)">
+              <polygon points="20,25 45,8 70,25" fill="#1d4ed8"/>
+              <rect x="20" y="25" width="50" height="105" rx="6" fill="#ffffff" stroke="#0284c7" stroke-width="3"/>
+              <rect x="20" y="55" width="50" height="45" fill="#0284c7"/>
+              <text x="45" y="75" text-anchor="middle" fill="#facc15" font-family="Poppins, sans-serif" font-weight="900" font-size="11">FRESH</text>
+              <text x="45" y="90" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-weight="800" font-size="12">MOO</text>
+              <circle cx="45" cy="115" r="8" fill="#facc15"/>
+            </g>
+            <!-- Splash -->
+            <path d="M55 130 Q75 110 95 132 Q120 105 145 132 Q165 112 185 132" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+            <rect x="12" y="14" width="76" height="24" rx="12" fill="#f97316"/>
+            <text x="50" y="30" text-anchor="middle" fill="#fff" font-weight="800" font-size="10">100% CALCIUM</text>
+          </svg>
+        `,
+        food: `
+          <svg viewBox="0 0 240 190" class="w-full h-44 rounded-2xl shadow-inner bg-gradient-to-br from-orange-100 via-amber-50 to-yellow-100 p-2">
+            <circle cx="120" cy="95" r="72" fill="#f97316" opacity="0.15"/>
+            <!-- Burger Illustration -->
+            <g transform="translate(55, 34)">
+              <!-- Top Bun -->
+              <path d="M15,48 C15,12 115,12 115,48 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2.5"/>
+              <ellipse cx="45" cy="26" rx="4" ry="2" fill="#fef3c7"/>
+              <ellipse cx="68" cy="21" rx="4" ry="2" fill="#fef3c7"/>
+              <ellipse cx="88" cy="28" rx="4" ry="2" fill="#fef3c7"/>
+              <!-- Lettuce -->
+              <path d="M10,54 Q25,45 40,54 T70,54 T100,54 T122,54" fill="none" stroke="#22c55e" stroke-width="7" stroke-linecap="round"/>
+              <!-- Cheese -->
+              <polygon points="15,60 115,60 105,74 65,66 25,74" fill="#facc15"/>
+              <!-- Beef Patty -->
+              <rect x="12" y="68" width="106" height="18" rx="9" fill="#78350f"/>
+              <!-- Bottom Bun -->
+              <path d="M16,88 L114,88 C114,104 16,104 16,88 Z" fill="#d97706"/>
+            </g>
+            <rect x="14" y="14" width="84" height="24" rx="12" fill="#dc2626"/>
+            <text x="56" y="30" text-anchor="middle" fill="#fff" font-weight="800" font-size="10">BUY 1 GET 1!</text>
+            <text x="120" y="168" text-anchor="middle" fill="#9a3412" font-family="Poppins, sans-serif" font-weight="900" font-size="13">CRISPYBITE BURGER</text>
+          </svg>
+        `,
+        clothes: `
+          <svg viewBox="0 0 240 190" class="w-full h-44 rounded-2xl shadow-inner bg-gradient-to-br from-indigo-100 via-blue-50 to-sky-100 p-2">
+            <!-- Stylish Varsity Jacket -->
+            <g transform="translate(55, 22)">
+              <path d="M35,18 L65,10 L95,18 L122,48 L104,64 L92,48 L92,122 L38,122 L38,48 L26,64 L8,48 Z" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="3"/>
+              <!-- Sleeves -->
+              <path d="M35,18 L8,48 L26,64 L38,48 Z" fill="#facc15"/>
+              <path d="M95,18 L122,48 L104,64 L92,48 Z" fill="#facc15"/>
+              <!-- Zipper & Stripes -->
+              <line x1="65" y1="15" x2="65" y2="122" stroke="#ffffff" stroke-width="3"/>
+              <rect x="38" y="112" width="54" height="10" fill="#f97316"/>
+              <circle cx="50" cy="48" r="9" fill="#facc15"/>
+              <text x="50" y="52" text-anchor="middle" fill="#1e3a8a" font-weight="900" font-size="10">U</text>
+            </g>
+            <rect x="145" y="16" width="82" height="24" rx="12" fill="#f97316"/>
+            <text x="186" y="32" text-anchor="middle" fill="#fff" font-weight="800" font-size="10">50% OFF SALE</text>
+            <text x="120" y="172" text-anchor="middle" fill="#1e3a8a" font-family="Poppins, sans-serif" font-weight="900" font-size="12">URBANSTYLE JACKET</text>
+          </svg>
+        `,
+        smartphone: `
+          <svg viewBox="0 0 240 190" class="w-full h-44 rounded-2xl shadow-inner bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-900 p-2">
+            <circle cx="120" cy="95" r="68" fill="#38bdf8" opacity="0.18"/>
+            <!-- Smartphone Frame -->
+            <g transform="translate(82, 16)">
+              <rect x="0" y="0" width="76" height="142" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+              <rect x="6" y="10" width="64" height="122" rx="9" fill="url(#phoneGrad)"/>
+              <defs>
+                <linearGradient id="phoneGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#0284c7"/>
+                  <stop offset="50%" stop-color="#f97316"/>
+                  <stop offset="100%" stop-color="#facc15"/>
+                </linearGradient>
+              </defs>
+              <rect x="28" y="4" width="20" height="4" rx="2" fill="#334155"/>
+              <text x="38" y="66" text-anchor="middle" fill="#fff" font-family="Poppins, sans-serif" font-weight="900" font-size="11">NOVA</text>
+              <text x="38" y="81" text-anchor="middle" fill="#fef08a" font-family="Poppins, sans-serif" font-weight="900" font-size="13">X10 PRO</text>
+              <rect x="16" y="96" width="44" height="16" rx="8" fill="#ffffff"/>
+              <text x="38" y="107" text-anchor="middle" fill="#0f172a" font-weight="800" font-size="8">108MP AI</text>
+            </g>
+            <rect x="12" y="16" width="64" height="22" rx="11" fill="#facc15"/>
+            <text x="44" y="30" text-anchor="middle" fill="#0f172a" font-weight="900" font-size="9">NEW LAUNCH</text>
+          </svg>
+        `,
+        service: `
+          <svg viewBox="0 0 240 190" class="w-full h-44 rounded-2xl shadow-inner bg-gradient-to-br from-emerald-50 via-teal-50 to-sky-100 p-2">
+            <!-- Laptop Repair / Service Illustration -->
+            <g transform="translate(55, 28)">
+              <rect x="15" y="10" width="100" height="68" rx="8" fill="#0284c7" stroke="#0f172a" stroke-width="3"/>
+              <rect x="22" y="17" width="86" height="54" rx="4" fill="#e0f2fe"/>
+              <path d="M5,78 L125,78 L116,90 L14,90 Z" fill="#64748b"/>
+              <!-- Wrench & Gear -->
+              <circle cx="65" cy="44" r="16" fill="#facc15" stroke="#ea580c" stroke-width="3"/>
+              <text x="65" y="49" text-anchor="middle" font-size="16">🔧</text>
+            </g>
+            <rect x="14" y="14" width="86" height="22" rx="11" fill="#0284c7"/>
+            <text x="57" y="28" text-anchor="middle" fill="#fff" font-weight="800" font-size="9">FAST 1-HOUR FIX</text>
+            <text x="120" y="156" text-anchor="middle" fill="#0f172a" font-family="Poppins, sans-serif" font-weight="900" font-size="12">PERINTIS TECH REPAIR</text>
+          </svg>
+        `,
+        shoes: `
+          <svg viewBox="0 0 260 185" class="w-full h-44 rounded-2xl shadow-inner bg-gradient-to-r from-blue-700 via-brandBlue-500 to-sky-400 p-2">
+            <circle cx="195" cy="92" r="65" fill="#facc15" opacity="0.25"/>
+            <!-- Running Sneaker -->
+            <g transform="translate(38, 42)">
+              <path d="M15,72 C15,45 45,35 72,22 L95,42 C118,48 155,52 168,72 L168,85 L12,85 Z" fill="#f97316" stroke="#ffffff" stroke-width="3"/>
+              <path d="M10,82 L172,82 C175,94 165,98 150,98 L18,98 C8,98 8,88 10,82 Z" fill="#ffffff"/>
+              <path d="M48,55 L95,62 L85,72 L42,65 Z" fill="#facc15"/>
+              <line x1="78" y1="30" x2="90" y2="38" stroke="#fff" stroke-width="3"/>
+              <line x1="86" y1="36" x2="98" y2="44" stroke="#fff" stroke-width="3"/>
+            </g>
+            <rect x="14" y="14" width="96" height="24" rx="12" fill="#facc15"/>
+            <text x="62" y="30" text-anchor="middle" fill="#1e3a8a" font-weight="900" font-size="10">LIGHT AS AIR!</text>
+            <text x="130" y="168" text-anchor="middle" fill="#ffffff" font-family="Poppins, sans-serif" font-weight="900" font-size="14">AERORUN PRO SNEAKERS</text>
+          </svg>
+        `
+      };
+      return svgs[type] || svgs.milk;
+    }
+
+    /*************************************************************************
+     * 4. NAVIGATION ENGINE
+     *************************************************************************/
+    function navigateTo(pageId) {
+      stopSpeech();
+      playSFX('click');
+      appState.currentPage = pageId;
+      saveState();
+
+      const navbar = document.getElementById('global-navbar');
+      if (pageId === 'welcome') {
+        navbar.classList.add('hidden');
+      } else {
+        navbar.classList.remove('hidden');
+      }
+
+      const drawer = document.getElementById('menu-drawer');
+      if (drawer) drawer.classList.add('hidden');
+
+      renderCurrentPage();
+      updateProgressUI();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function navigatePrev() {
+      const idx = MENU_ORDER.indexOf(appState.currentPage);
+      if (idx > 0) {
+        navigateTo(MENU_ORDER[idx - 1]);
+      } else {
+        navigateTo('welcome');
+      }
+    }
+
+    function navigateNext() {
+      const idx = MENU_ORDER.indexOf(appState.currentPage);
+      if (idx < MENU_ORDER.length - 1) {
+        navigateTo(MENU_ORDER[idx + 1]);
+      } else {
+        navigateTo('welcome');
+      }
+    }
+
+    function toggleMenuDrawer() {
+      const drawer = document.getElementById('menu-drawer');
+      if (!drawer) return;
+      drawer.classList.toggle('hidden');
+      if (!drawer.classList.contains('hidden')) {
+        const grid = document.getElementById('menu-drawer-grid');
+        grid.innerHTML = MENU_META.map(m => `
+          <button onclick="navigateTo('${m.id}')" class="p-3 rounded-2xl bg-gradient-to-br ${m.color} text-white text-left shadow-md hover:scale-105 transition flex flex-col justify-between min-h-[96px]">
+            <span class="text-2xl">${m.icon}</span>
+            <div>
+              <div class="font-heading font-extrabold text-xs sm:text-sm">${m.title}</div>
+              <div class="text-[10px] opacity-90 font-semibold">${m.subtitle}</div>
+            </div>
+          </button>
+        `).join('');
+      }
+    }
+
+    function openCertificateModal() {
+      const modal = document.getElementById('certificate-modal');
+      const nameInput = document.getElementById('cert-student-name');
+      const dateEl = document.getElementById('cert-date');
+      if (nameInput && appState.studentName) {
+        nameInput.value = appState.studentName;
+      }
+      if (dateEl) {
+        dateEl.textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      }
+      updateCertificatePreview();
+      updateProgressUI();
+      modal.classList.remove('hidden');
+    }
+
+    function closeCertificateModal() {
+      document.getElementById('certificate-modal').classList.add('hidden');
+    }
+
+    function updateCertificatePreview() {
+      const val = document.getElementById('cert-student-name').value.trim();
+      appState.studentName = val;
+      saveState();
+      document.getElementById('cert-display-name').textContent = val || 'Outstanding Student';
+    }
+
+    function printElement(elementId) {
+      const target = document.getElementById(elementId);
+      if (!target) return;
+      // Temporarily mark target with id="print-area"
+      const prevPrint = document.getElementById('print-area');
+      if (prevPrint) prevPrint.removeAttribute('id');
+      target.setAttribute('id', 'print-area');
+      window.print();
+      target.setAttribute('id', elementId);
+    }
+
+    /*************************************************************************
+     * 5. CONTENT DATA: MATERI (7 SUB-TOPICS WITH AUDIO & MINI-QUIZZES)
+     *************************************************************************/
+    const MATERI_TOPICS = [
+      {
+        title: '1. Definition of Advertisement',
+        idTitle: 'Pengertian Iklan (Advertisement)',
+        speechText: 'Definition of Advertisement. An advertisement, often called an ad, is a public announcement or persuasive message designed to promote a product, service, event, or idea to attract people to buy, use, or support it.',
+        enContent: 'An <strong>advertisement</strong> (often shortened to <em>ad</em>) is a public announcement or persuasive visual/audio message created to promote a product, service, event, or idea so that people become interested in buying, using, or supporting it.',
+        idContent: '<strong>Advertisement</strong> (sering disingkat <em>ad</em>) adalah pengumuman publik atau pesan persuasif (membujuk) yang dibuat untuk mempromosikan suatu produk, jasa, acara, atau gagasan agar masyarakat tertarik untuk membeli, menggunakan, atau mendukungnya.',
+        svgType: 'milk',
+        exampleTitle: 'Example Slogan & Persuasive Line:',
+        slogan: '"FreshMoo Milk: Pure Energy in Every Drop!"',
+        persuasiveLine: '"Start your morning strong with 100% fresh farm milk rich in calcium and vitamins!"',
+        quiz: {
+          question: 'What is the main meaning of an advertisement?',
+          options: [
+            'A secret message sent only to close friends',
+            'A public persuasive message to promote a product, service, or event',
+            'A news report about weather conditions',
+            'A personal diary story about daily activities'
+          ],
+          correct: 1,
+          explanation: 'An advertisement is a public persuasive message designed to promote products, services, or events.'
+        }
+      },
+      {
+        title: '2. Purpose of Advertisement',
+        idTitle: 'Tujuan Iklan (Purpose)',
+        speechText: 'Purpose of Advertisement. The main purpose of an advertisement is to persuade, inform, and remind the target audience to buy a product, use a service, attend an event, or follow a positive public action.',
+        enContent: 'The main <strong>purpose</strong> of an advertisement is to <strong>persuade</strong> (membujuk), <strong>inform</strong> (menginformasikan), and <strong>remind</strong> (mengingatkan) potential customers or target audiences to buy a product, use a service, or take a specific action.',
+        idContent: '<strong>Tujuan utama</strong> dari iklan adalah untuk <strong>membujuk (persuade)</strong>, <strong>menginformasikan (inform)</strong>, dan <strong>mengingatkan (remind)</strong> calon konsumen atau target audiens agar membeli produk, memakai jasa, atau melakukan tindakan tertentu.',
+        svgType: 'food',
+        exampleTitle: 'Purpose Breakdown Example:',
+        slogan: '"CrispyBite Burger: Double the Crunch, Double the Joy!"',
+        persuasiveLine: '"Order today and get Buy 1 Get 1 Free for all students!" (Purpose: To persuade customers to buy immediately).',
+        quiz: {
+          question: 'Which of the following is the primary purpose of a commercial food advertisement?',
+          options: [
+            'To entertain readers with a fictional fairy tale',
+            'To persuade people to buy and taste the food product',
+            'To explain how to repair a broken computer',
+            'To criticize competitors in the market'
+          ],
+          correct: 1,
+          explanation: 'Commercial food advertisements aim to persuade people to buy and enjoy the food.'
+        }
+      },
+      {
+        title: '3. Functions of Advertisement',
+        idTitle: 'Fungsi Iklan (Functions)',
+        speechText: 'Functions of Advertisement. Advertisements have four key functions: First, giving information about product features and prices. Second, persuading consumers to choose the brand. Third, reminding customers about existing products. Fourth, adding value to the brand image.',
+        enContent: `
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Informing (Memberi Informasi):</strong> Introducing new products, prices, benefits, and locations.</li>
+            <li><strong>Persuading (Membujuk):</strong> Convincing people that the product is better than others.</li>
+            <li><strong>Reminding (Mengingatkan):</strong> Keeping a well-known brand fresh in customers' minds.</li>
+            <li><strong>Adding Value (Memberi Nilai Tambah):</strong> Making a product look stylish, trustworthy, and high quality.</li>
+          </ul>
+        `,
+        idContent: `
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Informing:</strong> Mengenalkan produk baru, harga, manfaat, dan lokasi penjualan.</li>
+            <li><strong>Persuading:</strong> Meyakinkan masyarakat bahwa produk tersebut lebih unggul.</li>
+            <li><strong>Reminding:</strong> Menjaga agar merek tetap diingat oleh konsumen.</li>
+            <li><strong>Adding Value:</strong> Memberikan kesan berkualitas, modern, dan terpercaya pada merek.</li>
+          </ul>
+        `,
+        svgType: 'clothes',
+        exampleTitle: 'Function in Action:',
+        slogan: '"UrbanStyle Jacket: Wear Your Confidence!"',
+        persuasiveLine: '"Waterproof, lightweight, and 50% OFF this weekend only!" (Informing + Persuading).',
+        quiz: {
+          question: 'When an advertisement tells customers about a 50% weekend discount and waterproof material, which function is it performing?',
+          options: [
+            'Informing and persuading customers',
+            'Writing a historical biography',
+            'Reporting school attendance',
+            'Warning people not to buy clothes'
+          ],
+          correct: 0,
+          explanation: 'Sharing discount prices and product benefits performs the informing and persuading functions.'
+        }
+      },
+      {
+        title: '4. Types of Advertisement',
+        idTitle: 'Jenis-Jenis Iklan (Types)',
+        speechText: 'Types of Advertisement. There are four common types of advertisements: Product Advertisement, Service Advertisement, Event Advertisement, and Public Service Advertisement.',
+        enContent: `
+          <div class="grid sm:grid-cols-2 gap-2.5">
+            <div class="p-3 rounded-xl bg-blue-50 border border-blue-200">
+              <strong class="text-brandBlue-800">1. Product Advertisement:</strong> Promotes physical goods like food, drinks, clothes, or smartphones.
+            </div>
+            <div class="p-3 rounded-xl bg-orange-50 border border-orange-200">
+              <strong class="text-brandOrange-700">2. Service Advertisement:</strong> Promotes skills or services like laptop repair, English courses, or delivery.
+            </div>
+            <div class="p-3 rounded-xl bg-amber-50 border border-amber-200">
+              <strong class="text-amber-800">3. Event Advertisement:</strong> Promotes concerts, school festivals, webinars, or sports competitions.
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+              <strong class="text-emerald-800">4. Public Service Advertisement (PSA):</strong> Promotes social awareness like saving water, anti-bullying, or wearing helmets.
+            </div>
+          </div>
+        `,
+        idContent: `
+          <p><strong>4 Jenis Iklan Utama:</strong> (1) <em>Product Ad</em> mempromosikan barang fisik; (2) <em>Service Ad</em> mempromosikan jasa/keahlian seperti servis laptop atau kursus; (3) <em>Event Ad</em> mempromosikan acara/lomba; (4) <em>Public Service Ad (Iklan Layanan Masyarakat)</em> mengajak kebaikan sosial seperti hemat energi atau keselamatan berkendara.</p>
+        `,
+        svgType: 'service',
+        exampleTitle: 'Service Ad Example:',
+        slogan: '"Perintis Tech Repair: Fast, Trusted, Affordable!"',
+        persuasiveLine: '"Broken laptop screen or slow software? Fix it in 1 hour with 6-month warranty!"',
+        quiz: {
+          question: 'An advertisement promoting "Perintis Tech Repair – 1-Hour Laptop Repair Service" belongs to which type?',
+          options: [
+            'Public Service Advertisement',
+            'Service Advertisement',
+            'Food Product Advertisement',
+            'Music Concert Advertisement'
+          ],
+          correct: 1,
+          explanation: 'Because it offers a repair skill/service rather than a physical item, it is a Service Advertisement.'
+        }
+      },
+      {
+        title: '5. Generic Structure of Advertisement',
+        idTitle: 'Struktur Umum Iklan (Generic Structure)',
+        speechText: 'Generic Structure of Advertisement. A good advertisement consists of five parts: Headline, Illustration, Body Copy, Product Information, and Call to Action.',
+        enContent: `
+          <ol class="list-decimal pl-5 space-y-1.5">
+            <li><strong>Headline:</strong> The big, catchy title at the top to grab instant attention.</li>
+            <li><strong>Illustration:</strong> Attractive visual image or photo of the product/service.</li>
+            <li><strong>Body Copy:</strong> Short persuasive text explaining benefits and why customers need it.</li>
+            <li><strong>Product Information:</strong> Specific details such as price, variants, address, contact, or website.</li>
+            <li><strong>Call to Action (CTA):</strong> Action phrase telling readers what to do next (e.g., <em>"Buy Now!"</em>, <em>"Order Today!"</em>).</li>
+          </ol>
+        `,
+        idContent: `
+          <p><strong>Struktur Iklan:</strong> <em>Headline</em> (judul besar penarik perhatian), <em>Illustration</em> (gambar menarik), <em>Body Copy</em> (penjelasan singkat keunggulan), <em>Product Information</em> (detail harga/kontak/alamat), dan <em>Call to Action</em> (ajakan bertindak seperti "Beli Sekarang!").</p>
+        `,
+        svgType: 'smartphone',
+        exampleTitle: 'Complete Ad Structure Analysis (NovaPhone X10):',
+        slogan: 'Headline: "CAPTURE BEYOND LIMITS!" | CTA: "ORDER NOW & GET FREE EARBUDS!"',
+        persuasiveLine: 'Body Copy: "Ultra-clear 108MP AI camera with 2-day battery life." | Info: "Only Rp 2,999,000 at Perintis Store."',
+        quiz: {
+          question: 'Which part of an advertisement uses big, bold letters at the top to grab the reader’s attention immediately?',
+          options: [
+            'Call to Action',
+            'Headline',
+            'Contact Address',
+            'Footnote'
+          ],
+          correct: 1,
+          explanation: 'The Headline is the bold, attention-grabbing title placed prominently in an advertisement.'
+        }
+      },
+      {
+        title: '6. Language Features of Advertisement',
+        idTitle: 'Unsur Kebahasaan Iklan (Language Features)',
+        speechText: 'Language Features of Advertisement. Advertisements commonly use persuasive language, imperative sentences, positive adjectives, simple present tense, and strong action verbs.',
+        enContent: `
+          <ul class="list-disc pl-5 space-y-1.5">
+            <li><strong>Persuasive Language:</strong> Words that convince buyers (e.g., <em>guaranteed, best choice, limited offer, save more</em>).</li>
+            <li><strong>Imperative Sentences (Kalimat Perintah/Ajakan):</strong> Starting with base verbs (e.g., <em>"Grab yours today!"</em>, <em>"Taste the freshness!"</em>).</li>
+            <li><strong>Positive Adjectives (Kata Sifat Positif):</strong> Describing quality (e.g., <em>fresh, crispy, affordable, stylish, fast</em>).</li>
+            <li><strong>Simple Present Tense:</strong> Stating facts & product benefits (e.g., <em>"FreshMoo milk gives you energy."</em>).</li>
+            <li><strong>Action Verbs:</strong> Dynamic verbs (e.g., <em>buy, get, enjoy, discover, save, join</em>).</li>
+          </ul>
+        `,
+        idContent: `
+          <p><strong>Ciri Kebahasaan Iklan:</strong> Menggunakan <em>Persuasive Language</em> (bahasa membujuk), <em>Imperative Sentences</em> (kalimat ajakan seperti "Get it now!"), <em>Adjectives</em> (kata sifat positif seperti fresh, smart, cheap), <em>Simple Present Tense</em>, dan <em>Action Verbs</em> (kata kerja aktif).</p>
+        `,
+        svgType: 'shoes',
+        exampleTitle: 'Language Features Highlight:',
+        slogan: '"Run Faster, Jump Higher with AeroRun Pro!"',
+        persuasiveLine: 'Imperative: "Get yours today!" | Adjectives: "Lightweight, breathable, durable" | Simple Present: "AeroRun protects your feet."',
+        quiz: {
+          question: 'Identify the imperative sentence commonly used in an advertisement:',
+          options: [
+            'Yesterday I bought a pair of shoes.',
+            'Grab your favorite flavor now!',
+            'She was drinking cold milk.',
+            'They had visited the store.'
+          ],
+          correct: 1,
+          explanation: '"Grab your favorite flavor now!" starts with the base verb "Grab" to invite/urge the reader to act.'
+        }
+      },
+      {
+        title: '7. Advertisement Vocabulary',
+        idTitle: 'Kosakata Penting Iklan (Vocabulary)',
+        speechText: 'Advertisement Vocabulary. Click any speaker button on the vocabulary cards to listen to the English pronunciation and learn the Indonesian meaning.',
+        enContent: 'Click the <strong>🔊 Speak</strong> button on each vocabulary card below to hear the native English pronunciation!',
+        idContent: 'Klik tombol <strong>🔊 Speak</strong> pada setiap kartu kosakata di bawah ini untuk mendengarkan pelafalan bahasa Inggris yang tepat!',
+        svgType: null,
+        isVocabSection: true,
+        quiz: {
+          question: 'What is the English term for a short, memorable phrase used to represent a brand in an advertisement?',
+          options: [
+            'Slogan',
+            'Warranty',
+            'Receipt',
+            'Ingredient'
+          ],
+          correct: 0,
+          explanation: 'A slogan is a short, catchy, and memorable phrase used in advertising to represent a product or brand.'
+        }
+      }
+    ];
+
+    const VOCAB_CARDS = [
+      { word: 'Advertisement', phonetic: '/ˌædvərˈtaɪzmənt/', id: 'Iklan / Promosi', example: 'I saw a cool smartphone advertisement.' },
+      { word: 'Slogan', phonetic: '/ˈsloʊɡən/', id: 'Slogan / Semboyan Iklan', example: 'A good slogan is short and memorable.' },
+      { word: 'Headline', phonetic: '/ˈhedlaɪn/', id: 'Judul Utama Iklan', example: 'The headline caught my attention immediately.' },
+      { word: 'Persuasive', phonetic: '/pərˈsweɪsɪv/', id: 'Bersifat Membujuk', example: 'Ads use persuasive words to attract buyers.' },
+      { word: 'Target Audience', phonetic: '/ˈtɑːrɡɪt ˈɔːdiəns/', id: 'Target Konsumen / Sasaran', example: 'Teenagers are the target audience for this jacket.' },
+      { word: 'Discount', phonetic: '/ˈdɪskaʊnt/', id: 'Potongan Harga / Diskon', example: 'Enjoy a 30% discount this weekend!' },
+      { word: 'Affordable', phonetic: '/əˈfɔːrdəbl/', id: 'Harga Terjangkau', example: 'Our menu is delicious and affordable.' },
+      { word: 'Limited Offer', phonetic: '/ˈlɪmɪtɪd ˈɔːfər/', id: 'Penawaran Terbatas', example: 'Hurry up! This is a limited offer.' },
+      { word: 'Call to Action', phonetic: '/kɔːl tuː ˈækʃn/', id: 'Kalimat Ajakan Bertindak', example: '"Order Now!" is a strong call to action.' },
+      { word: 'Warranty', phonetic: '/ˈwɔːrənti/', id: 'Garansi / Jaminan', example: 'This laptop comes with a 1-year warranty.' },
+      { word: 'Brand', phonetic: '/brænd/', id: 'Merek Dagang', example: 'FreshMoo is a trusted dairy brand.' },
+      { word: 'Exclusive', phonetic: '/ɪkˈskluːsɪv/', id: 'Eksklusif / Khusus', example: 'Get exclusive bonuses for students.' }
+    ];
+
+    /*************************************************************************
+     * 6. CONTENT DATA: SIMULASI (4 INTERACTIVE AD EXPLORATIONS)
+     *************************************************************************/
+    const SIMULATION_ADS = [
+      {
+        id: 'milk',
+        badge: 'BEVERAGE ADVERTISEMENT',
+        title: 'FreshMoo Calcium Milk',
+        svgType: 'milk',
+        headline: 'GROW TALL, STAY SHARP!',
+        slogan: 'Pure Farm Goodness in Every Glass!',
+        body: 'Made from 100% pure fresh cow milk with High Calcium, Vitamin D, and Omega-3. Specially crafted for active high school teenagers. Enjoy delicious Vanilla & Choco flavors at your school canteen today!',
+        cta: 'DRINK FRESH MOO EVERY MORNING!',
+        narration: 'Welcome to Advertisement One: FreshMoo Calcium Milk! Headline: Grow tall, stay sharp! Slogan: Pure Farm Goodness in Every Glass! Made from 100 percent pure fresh cow milk with High Calcium and Vitamin D, specially crafted for active high school teenagers.',
+        questions: [
+          {
+            q: '1. What product is advertised?',
+            options: ['Sparkling soda drink', 'FreshMoo Calcium Milk', 'Instant coffee powder', 'Orange juice box'],
+            correct: 1,
+            explanation: 'The advertisement clearly promotes FreshMoo Calcium Milk made from 100% pure fresh cow milk.'
+          },
+          {
+            q: '2. What is the slogan of the advertisement?',
+            options: ['Grow Tall, Stay Sharp!', 'Drink Fresh Moo Every Morning!', 'Pure Farm Goodness in Every Glass!', '100% Calcium'],
+            correct: 2,
+            explanation: '"Pure Farm Goodness in Every Glass!" is the catchy brand slogan.'
+          },
+          {
+            q: '3. What is the purpose of the advertisement?',
+            options: ['To persuade students to buy and drink FreshMoo Milk', 'To explain how to raise cows on a farm', 'To warn people against drinking milk', 'To announce a school holiday'],
+            correct: 0,
+            explanation: 'The purpose is to persuade the target audience to buy and consume FreshMoo Milk for health and energy.'
+          },
+          {
+            q: '4. Who is the target audience?',
+            options: ['Babies under 1 year old', 'Active high school teenagers / students', 'Elderly retired workers', 'Professional truck drivers'],
+            correct: 1,
+            explanation: 'The body copy states: "Specially crafted for active high school teenagers."'
+          },
+          {
+            q: '5. What persuasive words are used in the ad?',
+            options: ['Expensive, bitter, old', '100% pure, fresh, delicious, high calcium', 'Slow, boring, artificial', 'Broken, limited, ordinary'],
+            correct: 1,
+            explanation: 'Words like "100% pure", "fresh", and "delicious" are positive persuasive adjectives that attract buyers.'
+          }
+        ]
+      },
+      {
+        id: 'food',
+        badge: 'FOOD ADVERTISEMENT',
+        title: 'CrispyBite Double Burger',
+        svgType: 'food',
+        headline: 'CRAVING REAL FLAVOR?',
+        slogan: 'Big Crunch, Bold Taste!',
+        body: 'Sink your teeth into our flame-grilled 100% juicy beef patty, melted cheddar cheese, and garden-fresh crispy lettuce! Special Student Promo: BUY 1 GET 1 FREE every Friday from 1 PM to 5 PM!',
+        cta: 'VISIT CRISPYBITE CAFE NOW!',
+        narration: 'Advertisement Two: CrispyBite Double Burger! Headline: Craving real flavor? Slogan: Big Crunch, Bold Taste! Enjoy our flame-grilled juicy beef patty and melted cheddar cheese. Special student promo: Buy 1 Get 1 Free every Friday!',
+        questions: [
+          {
+            q: '1. What product is advertised?',
+            options: ['CrispyBite Double Burger', 'Spicy Fried Noodles', 'Chocolate Ice Cream', 'Cheese Pizza Slice'],
+            correct: 0,
+            explanation: 'The poster illustrates and promotes CrispyBite Double Burger.'
+          },
+          {
+            q: '2. What is the slogan?',
+            options: ['Visit CrispyBite Cafe Now!', 'Big Crunch, Bold Taste!', 'Craving Real Flavor?', 'Buy 1 Get 1 Free!'],
+            correct: 1,
+            explanation: '"Big Crunch, Bold Taste!" is the memorable slogan describing the burger.'
+          },
+          {
+            q: '3. What is the purpose of the advertisement?',
+            options: ['To teach students how to cook beef', 'To attract hungry students to buy CrispyBite Burger with a Friday promo', 'To close down the restaurant', 'To compare different vegetable farms'],
+            correct: 1,
+            explanation: 'It persuades customers to visit CrispyBite Cafe and enjoy the Buy 1 Get 1 Free promotion.'
+          },
+          {
+            q: '4. Who is the target audience?',
+            options: ['Students and burger lovers looking for an affordable meal', 'Dentists and hospital patients', 'Infants and toddlers', 'Pet shop owners'],
+            correct: 0,
+            explanation: 'The "Special Student Promo" specifically targets students and fast-food lovers.'
+          },
+          {
+            q: '5. What persuasive words/phrases are used?',
+            options: ['Cold, stale, overpriced', 'Flame-grilled, juicy, crispy, Buy 1 Get 1 Free', 'Small, tasteless, regular', 'Difficult, noisy, late'],
+            correct: 1,
+            explanation: '"Flame-grilled", "juicy", "crispy", and "Buy 1 Get 1 Free" are strong persuasive expressions.'
+          }
+        ]
+      },
+      {
+        id: 'clothes',
+        badge: 'CLOTHING ADVERTISEMENT',
+        title: 'UrbanStyle Varsity Jacket',
+        svgType: 'clothes',
+        headline: 'UPGRADE YOUR STREET LOOK!',
+        slogan: 'Style That Speaks Your Vibe!',
+        body: 'Stay cool and comfortable in any weather with UrbanStyle Varsity Jacket! Made with breathable cotton fleece, stylish bold colors, and durable stitching. Get 50% OFF for SMK & SMA students!',
+        cta: 'SHOP ONLINE OR IN-STORE TODAY!',
+        narration: 'Advertisement Three: UrbanStyle Varsity Jacket! Headline: Upgrade your street look! Slogan: Style That Speaks Your Vibe! Made with breathable cotton fleece and stylish bold colors. Get 50 percent off for SMK and SMA students!',
+        questions: [
+          {
+            q: '1. What product is advertised?',
+            options: ['Running sneakers', 'UrbanStyle Varsity Jacket', 'Leather school backpack', 'Digital wristwatch'],
+            correct: 1,
+            explanation: 'The advertisement promotes the UrbanStyle Varsity Jacket.'
+          },
+          {
+            q: '2. What is the slogan?',
+            options: ['Upgrade Your Street Look!', 'Shop Online Today!', 'Style That Speaks Your Vibe!', '50% Off Sale'],
+            correct: 2,
+            explanation: '"Style That Speaks Your Vibe!" is the slogan representing the fashion brand.'
+          },
+          {
+            q: '3. What is the purpose of the advertisement?',
+            options: ['To persuade young people to buy the trendy jacket at a 50% discount', 'To explain how to wash winter coats', 'To recruit factory workers', 'To donate old uniforms'],
+            correct: 0,
+            explanation: 'The ad aims to convince students to purchase the jacket by highlighting its style and 50% discount.'
+          },
+          {
+            q: '4. Who is the target audience?',
+            options: ['SMK and SMA students / fashion-conscious youth', 'Construction workers', 'Deep-sea divers', 'Preschool toddlers'],
+            correct: 0,
+            explanation: 'The text directly mentions "for SMK & SMA students" and street style fashion.'
+          },
+          {
+            q: '5. What persuasive words are used?',
+            options: ['Heavy, dull, torn', 'Cool, comfortable, breathable, stylish, 50% OFF', 'Tight, itchy, expensive', 'Plain, outdated, fragile'],
+            correct: 1,
+            explanation: '"Cool", "comfortable", "breathable", "stylish", and "50% OFF" persuade readers about quality and value.'
+          }
+        ]
+      },
+      {
+        id: 'smartphone',
+        badge: 'GADGET ADVERTISEMENT',
+        title: 'NovaPhone X10 Pro',
+        svgType: 'smartphone',
+        headline: 'POWER IN YOUR POCKET!',
+        slogan: 'Smart Speed, Smarter You!',
+        body: 'Experience lightning-fast 5G performance, a crystal-clear 108MP AI camera, and a massive 6000mAh battery that lasts 2 full days! Pre-order now and receive FREE wireless earbuds!',
+        cta: 'PRE-ORDER NOW AT NOVAPHONE.ID!',
+        narration: 'Advertisement Four: NovaPhone X10 Pro! Headline: Power in your pocket! Slogan: Smart Speed, Smarter You! Experience lightning-fast 5G performance, 108 megapixel AI camera, and massive battery. Pre-order now and get free wireless earbuds!',
+        questions: [
+          {
+            q: '1. What product is advertised?',
+            options: ['Desktop gaming monitor', 'NovaPhone X10 Pro Smartphone', 'Portable Bluetooth speaker', 'Digital DSLR camera'],
+            correct: 1,
+            explanation: 'The visual and text advertise the NovaPhone X10 Pro smartphone.'
+          },
+          {
+            q: '2. What is the slogan?',
+            options: ['Power in Your Pocket!', 'Pre-Order Now!', 'Smart Speed, Smarter You!', '108MP AI Camera'],
+            correct: 2,
+            explanation: '"Smart Speed, Smarter You!" is the catchy slogan of NovaPhone.'
+          },
+          {
+            q: '3. What is the purpose of the advertisement?',
+            options: ['To persuade tech users to pre-order the new NovaPhone X10 Pro', 'To teach phone repair technicians', 'To warn users about screen time', 'To sell second-hand phone cases'],
+            correct: 0,
+            explanation: 'The ad promotes the new launch and persuades customers to pre-order with a free bonus.'
+          },
+          {
+            q: '4. Who is the target audience?',
+            options: ['Students, content creators, and smartphone users who need speed & great camera', 'People who never use technology', 'Kindergarten children', 'Antique collectors'],
+            correct: 0,
+            explanation: 'Features like 5G, 108MP AI camera, and long battery appeal to active smartphone users and creators.'
+          },
+          {
+            q: '5. What persuasive words are used?',
+            options: ['Slow, blurry, weak', 'Lightning-fast, crystal-clear, massive, FREE', 'Outdated, heavy, costly', 'Basic, limited, fragile'],
+            correct: 1,
+            explanation: '"Lightning-fast", "crystal-clear", "massive", and "FREE" are powerful persuasive terms.'
+          }
+        ]
+      }
+    ];
+
+    /*************************************************************************
+     * 7. CONTENT DATA: 4 MINI-GAMES
+     *************************************************************************/
+    const GAME1_ITEMS = [
+      { svg: 'milk', clue: '"Pure Farm Goodness in Every Glass! Rich in Calcium & Vitamin D."', options: ['FreshMoo Milk', 'CrispyBite Burger', 'NovaPhone X10', 'UrbanStyle Jacket'], answer: 0 },
+      { svg: 'food', clue: '"Flame-grilled juicy beef patty with melted cheese! Buy 1 Get 1 Free!"', options: ['Perintis Tech Repair', 'CrispyBite Burger', 'AeroRun Sneakers', 'FreshMoo Milk'], answer: 1 },
+      { svg: 'clothes', clue: '"Upgrade Your Street Look! Breathable cotton fleece, 50% OFF!"', options: ['NovaPhone X10', 'FreshMoo Milk', 'UrbanStyle Varsity Jacket', 'Perintis Tech Repair'], answer: 2 },
+      { svg: 'smartphone', clue: '"Lightning-fast 5G, 108MP AI Camera, 6000mAh Battery!"', options: ['CrispyBite Burger', 'AeroRun Sneakers', 'UrbanStyle Jacket', 'NovaPhone X10 Pro'], answer: 3 },
+      { svg: 'service', clue: '"Broken laptop screen? We fix it in 1 hour with 6-month warranty!"', options: ['Perintis Tech Repair Service', 'FreshMoo Milk', 'CrispyBite Burger', 'NovaPhone X10 Pro'], answer: 0 },
+      { svg: 'shoes', clue: '"Light as air! Run faster and jump higher with cushioned soles!"', options: ['UrbanStyle Jacket', 'AeroRun Pro Sneakers', 'Perintis Tech Repair', 'FreshMoo Milk'], answer: 1 }
+    ];
+
+    const GAME2_PAIRS = [
+      { en: 'Headline', id: 'Judul Utama Iklan' },
+      { en: 'Persuasive', id: 'Bersifat Membujuk' },
+      { en: 'Target Audience', id: 'Sasaran Konsumen' },
+      { en: 'Discount', id: 'Potongan Harga' },
+      { en: 'Call to Action', id: 'Ajakan Bertindak' },
+      { en: 'Affordable', id: 'Harga Terjangkau' }
+    ];
+
+    const GAME3_SLOGANS = [
+      { hint: 'Slogan for FreshMoo Milk:', words: ['Pure', 'Energy', 'in', 'Every', 'Drop!'] },
+      { hint: 'Slogan for CrispyBite Burger:', words: ['Big', 'Crunch,', 'Bold', 'Taste!'] },
+      { hint: 'Slogan for UrbanStyle Jacket:', words: ['Style', 'That', 'Speaks', 'Your', 'Vibe!'] },
+      { hint: 'Slogan for NovaPhone X10:', words: ['Smart', 'Speed,', 'Smarter', 'You!'] },
+      { hint: 'Call to Action for Student Promo:', words: ['Grab', 'Your', 'Favorite', 'Drink', 'Today!'] }
+    ];
+
+    const GAME4_QUIZ = [
+      { q: 'What is the main purpose of an advertisement?', options: ['To persuade people to buy or use a product/service', 'To tell a fictional bedtime story', 'To report daily weather forecasts', 'To list school rules'], answer: 0 },
+      { q: 'Which sentence is an Imperative Sentence?', options: ['She drinks milk every day.', 'Order your burger now!', 'The jacket was blue.', 'They are shopping at the mall.'], answer: 1 },
+      { q: 'Which part of an ad is the big title at the top?', options: ['Body Copy', 'Headline', 'Footnote', 'Address'], answer: 1 },
+      { q: '"Save the Earth, Plant a Tree!" is an example of...', options: ['Product Advertisement', 'Public Service Advertisement', 'Food Advertisement', 'Fashion Advertisement'], answer: 1 },
+      { q: 'Which tense is mostly used to describe product facts in ads?', options: ['Simple Past Tense', 'Simple Present Tense', 'Past Continuous Tense', 'Past Perfect Tense'], answer: 1 },
+      { q: 'What does "Call to Action" (CTA) do in an advertisement?', options: ['Urges the reader to take immediate action like buying', 'Lists the factory ingredients', 'Explains the history of the company', 'Shows the barcode number'], answer: 0 }
+    ];
+
+    /*************************************************************************
+     * 8. CONTENT DATA: EVALUASI (10 MC + 5 ESSAY + PROJECT RUBRIC)
+     *************************************************************************/
+    const EVALUASI_MC = [
+      {
+        q: '1. What is an advertisement?',
+        options: [
+          'A private letter sent to a family member',
+          'A public persuasive announcement to promote a product, service, or event',
+          'A scientific report about laboratory experiments',
+          'A biography of a famous historical leader'
+        ],
+        correct: 1,
+        explanation: 'An advertisement is a public persuasive message designed to promote products, services, or events.'
+      },
+      {
+        q: '2. Which of the following is NOT a function of an advertisement?',
+        options: [
+          'Informing customers about new products',
+          'Persuading buyers to choose a brand',
+          'Reminding consumers about a product',
+          'Hiding product details so nobody buys it'
+        ],
+        correct: 3,
+        explanation: 'Ads aim to inform, persuade, remind, and add value—never to hide products from buyers.'
+      },
+      {
+        q: '3. An advertisement that promotes "Fast 1-Hour Smartphone & Laptop Repair" is classified as a...',
+        options: [
+          'Product Advertisement',
+          'Service Advertisement',
+          'Public Service Advertisement',
+          'Event Advertisement'
+        ],
+        correct: 1,
+        explanation: 'Repairing devices is a skill/service, so it is a Service Advertisement.'
+      },
+      {
+        q: '4. "Stop Bullying! Be a Buddy, Not a Bully!" is an example of...',
+        options: [
+          'Commercial Food Advertisement',
+          'Public Service Advertisement (PSA)',
+          'Gadget Product Advertisement',
+          'Clothing Discount Advertisement'
+        ],
+        correct: 1,
+        explanation: 'Public Service Advertisements raise social awareness and promote positive community behavior.'
+      },
+      {
+        q: '5. Which part of the generic structure of an advertisement tells readers what to do next, such as "Get Yours Today!"?',
+        options: [
+          'Headline',
+          'Illustration',
+          'Call to Action (CTA)',
+          'Body Copy'
+        ],
+        correct: 2,
+        explanation: 'Call to Action (CTA) prompts the audience to take immediate action (e.g., Buy Now, Order Today).'
+      },
+      {
+        q: '6. Identify the persuasive adjective in this sentence: "Enjoy our crispy, delicious fried chicken at an affordable price!"',
+        options: [
+          'Enjoy',
+          'Chicken',
+          'Crispy, delicious, affordable',
+          'Price'
+        ],
+        correct: 2,
+        explanation: '"Crispy", "delicious", and "affordable" are positive adjectives used to persuade consumers.'
+      },
+      {
+        q: '7. Which sentence uses an Imperative Sentence suitable for an advertisement?',
+        options: [
+          'Grab your 50% discount before Sunday!',
+          'Yesterday we went to the clothing store.',
+          'The smartphone has a bright screen.',
+          'Students were drinking fresh milk.'
+        ],
+        correct: 0,
+        explanation: '"Grab your 50% discount before Sunday!" starts with a base verb ("Grab") to urge action.'
+      },
+      {
+        q: '8. Read this ad text: "AeroRun Sneakers: Ultra-lightweight shoes designed for young athletes and runners." Who is the target audience?',
+        options: [
+          'Infants and toddlers',
+          'Young athletes and runners',
+          'Elderly hospital patients',
+          'Office printers'
+        ],
+        correct: 1,
+        explanation: 'The ad explicitly states it is designed for "young athletes and runners".'
+      },
+      {
+        q: '9. Why do advertisements use attractive illustrations or photos?',
+        options: [
+          'To make the text harder to read',
+          'To capture visual attention quickly and show the product appeal',
+          'To fill empty paper without any purpose',
+          'To replace the product name completely'
+        ],
+        correct: 1,
+        explanation: 'Illustrations capture immediate visual attention and showcase how attractive the product is.'
+      },
+      {
+        q: '10. Which tense is predominantly used in advertisements to state product benefits and facts?',
+        options: [
+          'Simple Present Tense',
+          'Past Perfect Continuous Tense',
+          'Future Perfect Tense',
+          'Simple Past Tense'
+        ],
+        correct: 0,
+        explanation: 'Simple Present Tense is used to state general truths, facts, and current benefits of the product.'
+      }
+    ];
+
+    const EVALUASI_ESSAY = [
+      {
+        q: '1. Explain in your own words what the main purpose of an advertisement is!',
+        sample: 'The main purpose of an advertisement is to inform, persuade, and remind the target audience so they become interested in buying a product, using a service, or attending an event.'
+      },
+      {
+        q: '2. Mention 4 types of advertisement and give 1 short example for each!',
+        sample: '1) Product Ad (e.g., FreshMoo Milk), 2) Service Ad (e.g., Perintis Laptop Repair), 3) Event Ad (e.g., School Music Festival), 4) Public Service Ad (e.g., Save Water Campaign).'
+      },
+      {
+        q: '3. List the 5 elements of the Generic Structure of an Advertisement!',
+        sample: '1) Headline, 2) Illustration, 3) Body Copy, 4) Product Information, and 5) Call to Action (CTA).'
+      },
+      {
+        q: '4. Write 2 persuasive imperative sentences to promote a healthy fruit juice!',
+        sample: '1) "Taste the 100% natural freshness in every sip!" 2) "Grab your cold bottle today and get 20% off!"'
+      },
+      {
+        q: '5. Create a short catchy slogan for a vocational school (SMK) student entrepreneurship product!',
+        sample: '"Smart Craft, Bright Future – Made by SMK Perintis Innovators!"'
+      }
+    ];
+
+    /*************************************************************************
+     * 9. PAGE RENDERERS
+     *************************************************************************/
+    function renderCurrentPage() {
+      const container = document.getElementById('app-container');
+      if (!container) return;
+
+      switch (appState.currentPage) {
+        case 'welcome':
+          container.innerHTML = renderWelcomePage();
+          break;
+        case 'petunjuk':
+          container.innerHTML = renderPetunjukPage();
+          break;
+        case 'materi':
+          container.innerHTML = renderMateriPage();
+          break;
+        case 'simulasi':
+          container.innerHTML = renderSimulasiPage();
+          break;
+        case 'praktikum':
+          container.innerHTML = renderPraktikumPage();
+          break;
+        case 'game':
+          container.innerHTML = renderGamePage();
+          break;
+        case 'lkpd':
+          container.innerHTML = renderLkpdPage();
+          break;
+        case 'evaluasi':
+          container.innerHTML = renderEvaluasiPage();
+          break;
+        case 'pengembang':
+          container.innerHTML = renderPengembangPage();
+          break;
+        default:
+          container.innerHTML = renderWelcomePage();
+      }
+    }
+
+    /* -------------------- A. WELCOME PAGE -------------------- */
+    function renderWelcomePage() {
+      const pct = calculateProgressPercent();
+      return `
+        <div class="page-enter max-w-6xl mx-auto py-4 sm:py-8">
+          <!-- Hero Card -->
+          <div class="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-brandBlue-700 via-brandBlue-600 to-sky-500 text-white p-6 sm:p-12 shadow-2xl border-4 border-brandYellow-400">
+            <!-- Decorative Floating Ad Badges -->
+            <div class="hidden md:flex absolute top-6 right-8 bg-brandYellow-400 text-slate-900 font-heading font-black text-xs px-4 py-2 rounded-2xl shadow-lg animate-float">
+              🔥 100% INTERACTIVE ENGLISH!
+            </div>
+            <div class="hidden md:flex absolute bottom-8 right-12 bg-brandOrange-500 text-white font-heading font-extrabold text-xs px-4 py-2 rounded-2xl shadow-lg animate-float-rev">
+              🎯 FASE E • KURIKULUM MERDEKA
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-center relative z-10">
+              <div class="lg:col-span-7 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm border border-white/30 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold text-brandYellow-300 mb-4">
+                  <span>🏫 SMK PERINTIS</span>
+                  <span>•</span>
+                  <span>KELAS X FASE E</span>
+                </div>
+
+                <h1 class="font-heading font-black text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-tight drop-shadow">
+                  ADVERTISEMENT <span class="text-brandYellow-300">WORLD</span>
+                </h1>
+                <p class="font-heading font-bold text-lg sm:text-2xl text-orange-200 mt-2">
+                  “Learn English Through Advertising!”
+                </p>
+                <p class="text-sm sm:text-base text-blue-100 mt-4 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                  Welcome to an exciting digital learning adventure! Explore real-world product & service ads, listen to native English audio, play interactive games, design your own ad poster, and master English Advertisement materials.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="mt-7 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
+                  <button onclick="navigateTo('materi')" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brandYellow-400 to-brandOrange-500 hover:from-brandYellow-300 hover:to-brandOrange-400 text-slate-900 font-heading font-black text-base sm:text-lg shadow-xl btn-pulse transform hover:scale-105 transition flex items-center justify-center gap-2">
+                    <span>🚀</span>
+                    <span>START LEARNING</span>
+                  </button>
+                  <button onclick="navigateTo('petunjuk')" class="w-full sm:w-auto px-6 py-4 rounded-2xl bg-white/15 hover:bg-white/25 border-2 border-white/40 text-white font-heading font-bold text-sm sm:text-base transition flex items-center justify-center gap-2">
+                    <span>💡</span>
+                    <span>Petunjuk Penggunaan</span>
+                  </button>
+                </div>
+
+                <!-- Developer & Progress Strip -->
+                <div class="mt-7 pt-5 border-t border-white/20 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs">
+                  <div class="bg-blue-900/50 px-3.5 py-2 rounded-xl border border-blue-400/30">
+                    👩‍🏫 Developed by: <strong class="text-brandYellow-300">Intan Liana, S.Pd.</strong> (SMK Perintis)
+                  </div>
+                  <div class="bg-blue-900/50 px-3.5 py-2 rounded-xl border border-blue-400/30">
+                    📊 Your Progress: <strong class="text-brandOrange-300">${pct}% Completed</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Visual Ad Showcase Collage -->
+              <div class="lg:col-span-5 grid grid-cols-2 gap-3">
+                <div class="bg-white rounded-2xl p-2.5 shadow-xl transform -rotate-2 hover:rotate-0 transition">
+                  ${getAdSVG('milk')}
+                  <p class="text-center font-heading font-extrabold text-xs text-brandBlue-800 mt-1.5">🥛 Beverage Ad</p>
+                </div>
+                <div class="bg-white rounded-2xl p-2.5 shadow-xl transform rotate-2 hover:rotate-0 transition mt-4">
+                  ${getAdSVG('food')}
+                  <p class="text-center font-heading font-extrabold text-xs text-brandOrange-600 mt-1.5">🍔 Food Ad</p>
+                </div>
+                <div class="bg-white rounded-2xl p-2.5 shadow-xl transform rotate-1 hover:rotate-0 transition">
+                  ${getAdSVG('clothes')}
+                  <p class="text-center font-heading font-extrabold text-xs text-indigo-700 mt-1.5">🧥 Fashion Ad</p>
+                </div>
+                <div class="bg-white rounded-2xl p-2.5 shadow-xl transform -rotate-1 hover:rotate-0 transition mt-4">
+                  ${getAdSVG('service')}
+                  <p class="text-center font-heading font-extrabold text-xs text-emerald-700 mt-1.5">🔧 Service Ad</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8 Main Menu Cards Grid -->
+          <div class="mt-8">
+            <div class="flex items-center justify-between mb-4 px-1">
+              <h2 class="font-heading font-extrabold text-xl sm:text-2xl text-brandBlue-900">📌 Explore All Learning Menus</h2>
+              <span class="text-xs font-bold text-slate-500">Click any card to jump in</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+              ${MENU_META.map((m, i) => `
+                <button onclick="navigateTo('${m.id}')" class="group relative bg-white rounded-3xl p-4 sm:p-5 shadow-md hover:shadow-xl border-2 border-blue-100 hover:border-brandOrange-400 text-left transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
+                  <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${m.color} text-white flex items-center justify-center text-2xl sm:text-3xl shadow-md group-hover:scale-110 transition">
+                    ${m.icon}
+                  </div>
+                  <div class="mt-4">
+                    <span class="text-[10px] font-extrabold text-brandOrange-500 uppercase tracking-wider">Menu 0${i + 1}</span>
+                    <h3 class="font-heading font-black text-base sm:text-lg text-brandBlue-900 group-hover:text-brandOrange-600 transition">${m.title}</h3>
+                    <p class="text-xs text-slate-500 font-semibold mt-0.5">${m.subtitle}</p>
+                  </div>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* -------------------- B. PETUNJUK PENGGUNAAN -------------------- */
+    function renderPetunjukPage() {
+      const guideTextId = "Selamat datang di Advertisement World, Media Pembelajaran Interaktif Bahasa Inggris kelas 10 SMK Perintis. Gunakan tombol Start Learning untuk memulai materi. Tekan ikon speaker berwarna biru atau oranye untuk mendengarkan pelafalan bahasa Inggris. Jelajahi menu Materi, Simulasi, Praktikum membuat poster, empat Game interaktif, LKPD yang bisa dicetak, serta Evaluasi otomatis.";
+      return `
+        <div class="page-enter max-w-5xl mx-auto">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-brandYellow-400">
+            <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b-2 border-slate-100">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold">💡 USER GUIDE / PANDUAN PENGGUNA</span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-800 mt-2">PETUNJUK PENGGUNAAN MPI</h2>
+                <p class="text-xs sm:text-sm text-slate-500 font-semibold">How to use Advertisement World effectively</p>
+              </div>
+              <button onclick="speakText('${guideTextId}', 'id-ID')" class="px-4 py-2.5 rounded-2xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-xs sm:text-sm shadow-md flex items-center gap-2 transition">
+                <span>🔊</span><span>Dengarkan Petunjuk (ID)</span>
+              </button>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 mt-6">
+              <div class="p-4 rounded-2xl bg-blue-50 border-2 border-blue-200">
+                <h3 class="font-heading font-extrabold text-brandBlue-800 text-base flex items-center gap-2">
+                  <span>🧭</span><span>1. Navigasi & Progres Belajar</span>
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed">
+                  Gunakan tombol <strong>Home</strong>, <strong>Back</strong>, <strong>Next</strong>, dan <strong>Menu</strong> di bagian atas layar untuk berpindah antar halaman. Progres belajarmu tersimpan otomatis di perangkat dan ditampilkan pada <em>Progress Bar</em>. Setelah menyelesaikan aktivitas, kamu dapat mencetak <strong>Certificate of Completion</strong>.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-orange-50 border-2 border-orange-200">
+                <h3 class="font-heading font-extrabold text-brandOrange-700 text-base flex items-center gap-2">
+                  <span>🔊</span><span>2. Fitur Audio & Pelafalan</span>
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed">
+                  Klik tombol <strong>🔊 Speaker</strong> di setiap submateri, kosakata, dan simulasi untuk mendengarkan pelafalan Bahasa Inggris. Gunakan tombol kontrol di bagian atas (▶️ Play, ⏸️ Pause, ⏹️ Stop, 🔊 Mute, 🎵 BGM) sesuai kebutuhan.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-amber-50 border-2 border-amber-200">
+                <h3 class="font-heading font-extrabold text-amber-800 text-base flex items-center gap-2">
+                  <span>📚</span><span>3. Alur Pembelajaran (8 Menu)</span>
+                </h3>
+                <ul class="text-xs sm:text-sm text-slate-700 mt-2 space-y-1 list-disc pl-4">
+                  <li><strong>MATERI:</strong> Pelajari 7 konsep utama Advertisement + latihan singkat.</li>
+                  <li><strong>SIMULASI:</strong> Amati 4 contoh iklan produk & jawab analisisnya.</li>
+                  <li><strong>PRAKTIKUM:</strong> Rancang & cetak poster iklanmu sendiri!</li>
+                  <li><strong>GAME:</strong> Mainkan 4 permainan edukasi berhadiah bintang.</li>
+                </ul>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-200">
+                <h3 class="font-heading font-extrabold text-emerald-800 text-base flex items-center gap-2">
+                  <span>📝</span><span>4. LKPD & Evaluasi Akhir</span>
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-700 mt-2 leading-relaxed">
+                  Kerjakan <strong>LKPD 1 & LKPD 2</strong> secara langsung di aplikasi lalu klik <strong>PRINT LKPD</strong> untuk mengumpulkan ke guru. Uji pemahaman akhirmu di menu <strong>EVALUASI</strong> (10 Pilihan Ganda otomatis + 5 Uraian + Rubrik Proyek).
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex justify-end">
+              <button onclick="navigateTo('materi')" class="px-6 py-3 rounded-2xl bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-heading font-bold text-sm shadow-lg flex items-center gap-2">
+                <span>Lanjut ke Menu MATERI</span><span>➡️</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* -------------------- C. MATERI PAGE -------------------- */
+    function renderMateriPage() {
+      const idx = appState.materiTab || 0;
+      const topic = MATERI_TOPICS[idx];
+      markStepCompleted(`materi_${idx}`);
+
+      return `
+        <div class="page-enter max-w-6xl mx-auto">
+          <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-brandBlue-500">
+            <!-- Header -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-slate-100">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-blue-100 text-brandBlue-800 text-xs font-extrabold">📚 LEARNING MATERIALS • PHASE E</span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-900 mt-1">MATERI: ADVERTISEMENT</h2>
+              </div>
+              <button onclick="speakText(\`${topic.speechText.replace(/"/g, '')}\`, 'en-US')" class="px-4 py-2.5 rounded-2xl bg-gradient-to-r from-brandOrange-500 to-amber-500 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-md flex items-center gap-2 transition">
+                <span>🔊</span><span>Listen Explanation (EN)</span>
+              </button>
+            </div>
+
+            <!-- Sub-Topic Stepper Pills -->
+            <div class="flex overflow-x-auto gap-2 py-3 my-2 no-scrollbar">
+              ${MATERI_TOPICS.map((t, i) => `
+                <button onclick="selectMateriTab(${i})" class="px-3.5 py-2 rounded-xl text-xs font-extrabold whitespace-nowrap transition border-2 ${
+                  i === idx
+                    ? 'bg-brandBlue-600 text-white border-brandBlue-700 shadow-md'
+                    : appState.completedSteps['materi_' + i]
+                    ? 'bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100'
+                    : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-blue-50'
+                }">
+                  ${appState.completedSteps['materi_' + i] ? '✅ ' : ''}${t.title.split('.')[0]}. ${t.title.split('. ')[1]}
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Active Topic Body -->
+            <div class="mt-4 grid lg:grid-cols-12 gap-6 items-start">
+              <div class="${topic.svgType ? 'lg:col-span-7' : 'lg:col-span-12'} space-y-4">
+                <div class="bg-gradient-to-r from-blue-50 to-sky-50 p-5 rounded-2xl border-2 border-blue-200">
+                  <div class="flex items-start justify-between gap-2">
+                    <div>
+                      <h3 class="font-heading font-extrabold text-xl text-brandBlue-800">${topic.title}</h3>
+                      <p class="text-xs font-bold text-brandOrange-600">${topic.idTitle}</p>
+                    </div>
+                    <button onclick="speakText(\`${topic.speechText.replace(/"/g, '')}\`, 'en-US')" title="Speak English Text" class="p-2.5 rounded-xl bg-brandBlue-600 hover:bg-brandBlue-700 text-white text-sm shadow">
+                      🔊
+                    </button>
+                  </div>
+
+                  <div class="mt-3 text-sm sm:text-base text-slate-800 leading-relaxed">
+                    ${topic.enContent}
+                  </div>
+
+                  <div class="mt-3 pt-3 border-t border-blue-200 text-xs sm:text-sm text-slate-600 bg-white/80 p-3 rounded-xl">
+                    <span class="font-extrabold text-brandBlue-700">🇮🇩 Terjemahan Bahasa Indonesia:</span>
+                    <div class="mt-1 leading-relaxed">${topic.idContent}</div>
+                  </div>
+                </div>
+
+                ${topic.isVocabSection ? renderVocabGrid() : ''}
+
+                <!-- Mini Exercise / Latihan Singkat -->
+                <div class="bg-amber-50 p-5 rounded-2xl border-2 border-brandYellow-400">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="text-lg">⚡</span>
+                    <h4 class="font-heading font-extrabold text-sm sm:text-base text-amber-900">QUICK CHECK / LATIHAN SINGKAT</h4>
+                  </div>
+                  <p class="text-xs sm:text-sm font-bold text-slate-800 mb-3">${topic.quiz.question}</p>
+                  <div class="grid sm:grid-cols-2 gap-2" id="materi-quiz-options">
+                    ${topic.quiz.options.map((opt, oIdx) => `
+                      <button onclick="checkMateriQuiz(${idx}, ${oIdx})" class="p-3 rounded-xl bg-white hover:bg-blue-50 border-2 border-amber-200 text-left text-xs sm:text-sm font-bold text-slate-700 transition">
+                        <span class="inline-block w-6 h-6 rounded-full bg-amber-200 text-amber-900 text-center leading-6 mr-1.5 font-extrabold">${String.fromCharCode(65 + oIdx)}</span>
+                        ${opt}
+                      </button>
+                    `).join('')}
+                  </div>
+                  <div id="materi-quiz-feedback" class="hidden mt-3 p-3 rounded-xl text-xs sm:text-sm font-bold"></div>
+                </div>
+              </div>
+
+              ${topic.svgType ? `
+                <div class="lg:col-span-5 space-y-4">
+                  <div class="bg-white rounded-2xl p-4 border-2 border-orange-200 shadow-md">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs font-extrabold text-brandOrange-600 uppercase">🖼️ Illustrated Ad Example</span>
+                      <button onclick="speakText(\`${(topic.slogan + ' ' + topic.persuasiveLine).replace(/"/g, '')}\`, 'en-US')" class="px-2.5 py-1 rounded-lg bg-orange-100 hover:bg-orange-200 text-brandOrange-800 text-xs font-bold">
+                        🔊 Read Example
+                      </button>
+                    </div>
+                    ${getAdSVG(topic.svgType)}
+                    <div class="mt-3 p-3 rounded-xl bg-orange-50 border border-orange-200">
+                      <p class="text-[11px] font-extrabold text-brandOrange-700 uppercase">${topic.exampleTitle}</p>
+                      <p class="font-heading font-extrabold text-sm text-brandBlue-900 mt-1">${topic.slogan}</p>
+                      <p class="text-xs text-slate-700 mt-1 italic">${topic.persuasiveLine}</p>
+                    </div>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Bottom Topic Navigation -->
+            <div class="mt-6 pt-4 border-t-2 border-slate-100 flex items-center justify-between">
+              <button ${idx === 0 ? 'disabled' : ''} onclick="selectMateriTab(${idx - 1})" class="px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm ${idx === 0 ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-slate-200 hover:bg-slate-300 text-slate-800'}">
+                ⬅️ Previous Sub-Topic
+              </button>
+              ${idx < MATERI_TOPICS.length - 1 ? `
+                <button onclick="selectMateriTab(${idx + 1})" class="px-5 py-2.5 rounded-xl bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-bold text-xs sm:text-sm shadow">
+                  Next Sub-Topic ➡️
+                </button>
+              ` : `
+                <button onclick="navigateTo('simulasi')" class="px-5 py-2.5 rounded-xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-xs sm:text-sm shadow">
+                  Go to SIMULASI 🔍 ➡️
+                </button>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderVocabGrid() {
+      return `
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 my-3">
+          ${VOCAB_CARDS.map(v => `
+            <div class="bg-white p-3.5 rounded-2xl border-2 border-blue-200 hover:border-brandOrange-400 shadow-sm transition flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2">
+                  <h5 class="font-heading font-extrabold text-base text-brandBlue-800">${v.word}</h5>
+                  <button onclick="speakText('${v.word}. ${v.example}', 'en-US')" class="px-2.5 py-1 rounded-xl bg-brandBlue-600 hover:bg-brandOrange-500 text-white text-xs font-bold transition shadow-sm flex items-center gap-1">
+                    <span>🔊</span><span>Speak</span>
+                  </button>
+                </div>
+                <p class="text-[11px] font-mono text-slate-400">${v.phonetic}</p>
+                <p class="text-xs font-extrabold text-brandOrange-600 mt-1">🇮🇩 ${v.id}</p>
+              </div>
+              <p class="text-[11px] text-slate-600 italic mt-2 pt-2 border-t border-slate-100">"${v.example}"</p>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function selectMateriTab(idx) {
+      if (idx >= 0 && idx < MATERI_TOPICS.length) {
+        appState.materiTab = idx;
+        saveState();
+        renderCurrentPage();
+      }
+    }
+
+    function checkMateriQuiz(topicIdx, chosenIdx) {
+      const quiz = MATERI_TOPICS[topicIdx].quiz;
+      const fb = document.getElementById('materi-quiz-feedback');
+      if (!fb) return;
+      fb.classList.remove('hidden');
+      if (chosenIdx === quiz.correct) {
+        playSFX('correct');
+        fb.className = 'mt-3 p-3 rounded-xl text-xs sm:text-sm font-bold bg-emerald-100 text-emerald-900 border border-emerald-400';
+        fb.innerHTML = `✅ <strong>Correct!</strong> ${quiz.explanation}`;
+      } else {
+        playSFX('wrong');
+        fb.className = 'mt-3 p-3 rounded-xl text-xs sm:text-sm font-bold bg-red-100 text-red-900 border border-red-400';
+        fb.innerHTML = `❌ <strong>Not quite!</strong> ${quiz.explanation}`;
+      }
+    }
+
+    /* -------------------- D. SIMULASI PAGE -------------------- */
+    let simState = {
+      adIndex: 0,
+      qIndex: 0,
+      score: 0,
+      answered: false,
+      chosenOption: null
+    };
+
+    function renderSimulasiPage() {
+      const ad = SIMULATION_ADS[simState.adIndex];
+      const qObj = ad.questions[simState.qIndex];
+
+      return `
+        <div class="page-enter max-w-6xl mx-auto">
+          <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-brandOrange-500">
+            <!-- Top Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-slate-100">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-orange-100 text-brandOrange-800 text-xs font-extrabold">🔍 INTERACTIVE SIMULATION</span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-900 mt-1">EXPLORE THE ADVERTISEMENT!</h2>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="px-4 py-2 rounded-2xl bg-brandYellow-300 text-slate-900 font-heading font-black text-sm shadow">
+                  ⭐ Score: ${simState.score} pts
+                </div>
+              </div>
+            </div>
+
+            <!-- Ad Selector Tabs -->
+            <div class="flex flex-wrap gap-2 my-4">
+              ${SIMULATION_ADS.map((item, idx) => `
+                <button onclick="selectSimAd(${idx})" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-extrabold transition border-2 ${
+                  idx === simState.adIndex
+                    ? 'bg-brandOrange-500 text-white border-brandOrange-600 shadow'
+                    : appState.completedSteps['simulasi_' + idx]
+                    ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                    : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-orange-50'
+                }">
+                  ${appState.completedSteps['simulasi_' + idx] ? '✅ ' : ''}Ad #${idx + 1}: ${item.title.split(' ')[0]}
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Main Two-Column Simulation Stage -->
+            <div class="grid lg:grid-cols-12 gap-6 items-start mt-2">
+              <!-- Left: Visual Advertisement Poster -->
+              <div class="lg:col-span-5 bg-gradient-to-b from-blue-50 to-amber-50 p-5 rounded-3xl border-2 border-brandBlue-300 shadow-md">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-brandBlue-600 text-white text-[10px] font-extrabold">${ad.badge}</span>
+                  <button onclick="speakText(\`${ad.narration}\`, 'en-US')" class="px-3 py-1.5 rounded-xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-xs shadow flex items-center gap-1">
+                    <span>🔊</span><span>Audio Narration</span>
+                  </button>
+                </div>
+
+                ${getAdSVG(ad.svgType)}
+
+                <div class="mt-4 bg-white p-4 rounded-2xl border border-blue-200 space-y-2">
+                  <h3 class="font-heading font-black text-lg text-brandBlue-900">${ad.headline}</h3>
+                  <p class="text-xs font-extrabold text-brandOrange-600 italic">“${ad.slogan}”</p>
+                  <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${ad.body}</p>
+                  <div class="pt-2">
+                    <span class="inline-block w-full text-center py-2 px-3 rounded-xl bg-brandYellow-400 text-slate-900 font-heading font-black text-xs">
+                      ${ad.cta}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Interactive Analysis Question -->
+              <div class="lg:col-span-7 bg-slate-50 p-5 sm:p-6 rounded-3xl border-2 border-slate-200">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="text-xs font-extrabold text-brandBlue-700">Question ${simState.qIndex + 1} of ${ad.questions.length}</span>
+                  <div class="flex gap-1">
+                    ${ad.questions.map((_, qi) => `
+                      <span class="w-6 h-2 rounded-full ${qi === simState.qIndex ? 'bg-brandOrange-500' : qi < simState.qIndex ? 'bg-emerald-500' : 'bg-slate-300'}"></span>
+                    `).join('')}
+                  </div>
+                </div>
+
+                <h4 class="font-heading font-extrabold text-base sm:text-lg text-slate-900 mb-4">${qObj.q}</h4>
+
+                <div class="space-y-2.5">
+                  ${qObj.options.map((opt, oIdx) => {
+                    let btnClass = 'bg-white hover:bg-blue-50 border-slate-200 text-slate-800';
+                    if (simState.answered) {
+                      if (oIdx === qObj.correct) {
+                        btnClass = 'bg-emerald-100 border-emerald-500 text-emerald-900';
+                      } else if (oIdx === simState.chosenOption) {
+                        btnClass = 'bg-red-100 border-red-500 text-red-900';
+                      } else {
+                        btnClass = 'bg-white opacity-60 border-slate-200 text-slate-500';
+                      }
+                    }
+                    return `
+                      <button ${simState.answered ? 'disabled' : ''} onclick="answerSimQuestion(${oIdx})" class="w-full p-3.5 rounded-2xl border-2 text-left text-xs sm:text-sm font-bold transition flex items-center gap-3 ${btnClass}">
+                        <span class="w-7 h-7 rounded-full bg-brandBlue-100 text-brandBlue-800 flex items-center justify-center font-extrabold shrink-0">
+                          ${String.fromCharCode(65 + oIdx)}
+                        </span>
+                        <span>${opt}</span>
+                      </button>
+                    `;
+                  }).join('')}
+                </div>
+
+                ${simState.answered ? `
+                  <div class="mt-4 p-4 rounded-2xl border-2 ${simState.chosenOption === qObj.correct ? 'bg-emerald-50 border-emerald-400 text-emerald-900' : 'bg-red-50 border-red-400 text-red-900'}">
+                    <div class="font-heading font-extrabold text-sm">
+                      ${simState.chosenOption === qObj.correct ? '🎉 Correct! (+20 Points)' : '❌ Incorrect!'}
+                    </div>
+                    <p class="text-xs sm:text-sm mt-1">${qObj.explanation}</p>
+                  </div>
+
+                  <div class="mt-4 flex justify-end">
+                    <button onclick="nextSimStep()" class="px-6 py-3 rounded-2xl bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-heading font-bold text-xs sm:text-sm shadow-lg flex items-center gap-2">
+                      <span>${simState.qIndex < ad.questions.length - 1 ? 'Next Question' : simState.adIndex < SIMULATION_ADS.length - 1 ? 'Next Advertisement' : 'Finish Simulation'}</span>
+                      <span>➡️</span>
+                    </button>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectSimAd(idx) {
+      simState.adIndex = idx;
+      simState.qIndex = 0;
+      simState.answered = false;
+      simState.chosenOption = null;
+      renderCurrentPage();
+    }
+
+    function answerSimQuestion(oIdx) {
+      if (simState.answered) return;
+      const ad = SIMULATION_ADS[simState.adIndex];
+      const qObj = ad.questions[simState.qIndex];
+      simState.answered = true;
+      simState.chosenOption = oIdx;
+      if (oIdx === qObj.correct) {
+        simState.score += 20;
+        playSFX('correct');
+      } else {
+        playSFX('wrong');
+      }
+      renderCurrentPage();
+    }
+
+    function nextSimStep() {
+      const ad = SIMULATION_ADS[simState.adIndex];
+      if (simState.qIndex < ad.questions.length - 1) {
+        simState.qIndex++;
+        simState.answered = false;
+        simState.chosenOption = null;
+        renderCurrentPage();
+      } else {
+        markStepCompleted(`simulasi_${simState.adIndex}`);
+        if (simState.adIndex < SIMULATION_ADS.length - 1) {
+          simState.adIndex++;
+          simState.qIndex = 0;
+          simState.answered = false;
+          simState.chosenOption = null;
+          showToast('Great job! Moving to next advertisement.', 'success');
+          renderCurrentPage();
+        } else {
+          playSFX('win');
+          showToast('🎉 All 4 Advertisement Simulations Completed!', 'success');
+          navigateTo('praktikum');
+        }
+      }
+    }
+
+    /* -------------------- E. PRAKTIKUM PAGE (AD POSTER STUDIO) -------------------- */
+    function renderPraktikumPage() {
+      const d = appState.posterDraft;
+      const themes = {
+        blue: { bg: 'from-brandBlue-700 via-brandBlue-600 to-sky-500', accent: 'bg-brandYellow-400 text-slate-900', border: 'border-brandYellow-400' },
+        orange: { bg: 'from-brandOrange-600 via-orange-500 to-amber-500', accent: 'bg-white text-brandOrange-700', border: 'border-yellow-300' },
+        emerald: { bg: 'from-emerald-700 via-teal-600 to-cyan-500', accent: 'bg-brandYellow-300 text-slate-900', border: 'border-brandYellow-300' },
+        dark: { bg: 'from-slate-900 via-blue-950 to-indigo-900', accent: 'bg-brandOrange-500 text-white', border: 'border-sky-400' }
+      };
+      const t = themes[d.theme] || themes.blue;
+
+      return `
+        <div class="page-enter max-w-6xl mx-auto">
+          <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-brandYellow-400">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-slate-100">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold">🎨 HANDS-ON PROJECT • PRAKTIKUM</span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-900 mt-1">CREATE YOUR OWN ADVERTISEMENT!</h2>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                <button onclick="readStudentPosterAloud()" class="px-4 py-2 rounded-xl bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-bold text-xs shadow flex items-center gap-1.5">
+                  <span>🔊</span><span>Present My Ad (TTS)</span>
+                </button>
+                <button onclick="saveAndPrintPoster()" class="px-4 py-2 rounded-xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-xs shadow flex items-center gap-1.5">
+                  <span>🖨️</span><span>Print / Save PDF</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 8 Guided Steps Banner -->
+            <div class="my-4 bg-blue-50 p-4 rounded-2xl border border-blue-200">
+              <p class="text-xs font-extrabold text-brandBlue-800 mb-2">📋 8-STEP ADVERTISEMENT CREATION GUIDE:</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] font-bold text-slate-700">
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">1️⃣ Choose a product</div>
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">2️⃣ Identify target audience</div>
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">3️⃣ Create a headline</div>
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">4️⃣ Write a slogan</div>
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">5️⃣ Write product description</div>
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">6️⃣ Add persuasive expressions</div>
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">7️⃣ Design ad poster</div>
+                <div class="bg-white px-2.5 py-1.5 rounded-lg border border-blue-100">8️⃣ Present your ad</div>
+              </div>
+            </div>
+
+            <!-- Interactive Form + Live Poster Preview -->
+            <div class="grid lg:grid-cols-12 gap-6 items-start mt-4">
+              <!-- Form Inputs -->
+              <div class="lg:col-span-6 space-y-3 bg-slate-50 p-5 rounded-3xl border-2 border-slate-200">
+                <h3 class="font-heading font-extrabold text-base text-brandBlue-800">✍️ Fill Your Advertisement Details</h3>
+
+                <div class="grid sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-extrabold text-slate-700 mb-1">1. Product Illustration</label>
+                    <select onchange="updatePosterField('category', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold">
+                      <option value="milk" ${d.category === 'milk' ? 'selected' : ''}>🥛 Beverage / Milk</option>
+                      <option value="food" ${d.category === 'food' ? 'selected' : ''}>🍔 Food / Snack</option>
+                      <option value="clothes" ${d.category === 'clothes' ? 'selected' : ''}>🧥 Clothing / Fashion</option>
+                      <option value="smartphone" ${d.category === 'smartphone' ? 'selected' : ''}>📱 Smartphone / Gadget</option>
+                      <option value="shoes" ${d.category === 'shoes' ? 'selected' : ''}>👟 Sport Shoes</option>
+                      <option value="service" ${d.category === 'service' ? 'selected' : ''}>🔧 Tech / Service</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-extrabold text-slate-700 mb-1">Poster Color Theme</label>
+                    <select onchange="updatePosterField('theme', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold">
+                      <option value="blue" ${d.theme === 'blue' ? 'selected' : ''}>🔵 Vibrant Blue & Yellow</option>
+                      <option value="orange" ${d.theme === 'orange' ? 'selected' : ''}>🟠 Energetic Orange</option>
+                      <option value="emerald" ${d.theme === 'emerald' ? 'selected' : ''}>🟢 Fresh Emerald Teal</option>
+                      <option value="dark" ${d.theme === 'dark' ? 'selected' : ''}>⚫ Modern Tech Dark</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Product Name</label>
+                  <input type="text" value="${escapeHtml(d.productName)}" oninput="updatePosterField('productName', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-bold" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Headline (Catchy Title)</label>
+                  <input type="text" value="${escapeHtml(d.headline)}" oninput="updatePosterField('headline', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-bold" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Slogan</label>
+                  <input type="text" value="${escapeHtml(d.slogan)}" oninput="updatePosterField('slogan', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-bold" />
+                </div>
+
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Product Description (Body Copy)</label>
+                  <textarea rows="2" oninput="updatePosterField('description', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs sm:text-sm font-semibold">${escapeHtml(d.description)}</textarea>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-extrabold text-slate-700 mb-1">Persuasive Words / Promo</label>
+                    <input type="text" value="${escapeHtml(d.persuasive)}" oninput="updatePosterField('persuasive', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-extrabold text-slate-700 mb-1">Target Audience</label>
+                    <input type="text" value="${escapeHtml(d.audience)}" oninput="updatePosterField('audience', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold" />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-extrabold text-slate-700 mb-1">Call to Action (CTA)</label>
+                  <input type="text" value="${escapeHtml(d.cta)}" oninput="updatePosterField('cta', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold" />
+                </div>
+              </div>
+
+              <!-- Live Poster Preview -->
+              <div class="lg:col-span-6">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-extrabold text-brandOrange-600 uppercase">🖼️ LIVE ADVERTISEMENT POSTER PREVIEW</span>
+                  <span class="text-[11px] text-slate-400 font-bold">Auto-updates as you type</span>
+                </div>
+
+                <div id="student-poster-printable" class="rounded-3xl bg-gradient-to-br ${t.bg} text-white p-6 sm:p-7 shadow-2xl border-4 ${t.border} text-center space-y-4">
+                  <div class="flex justify-between items-center text-[10px] font-extrabold uppercase tracking-wider opacity-90">
+                    <span>✨ ${escapeHtml(d.productName || 'YOUR BRAND')}</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-white/20">For: ${escapeHtml(d.audience || 'Everyone')}</span>
+                  </div>
+
+                  <h3 class="font-heading font-black text-2xl sm:text-3xl tracking-tight leading-tight drop-shadow">
+                    ${escapeHtml(d.headline || 'YOUR CATCHY HEADLINE HERE!')}
+                  </h3>
+
+                  <div class="max-w-xs mx-auto bg-white rounded-2xl p-2 shadow-lg">
+                    ${getAdSVG(d.category)}
+                  </div>
+
+                  <div class="inline-block px-4 py-1.5 rounded-full bg-white/15 border border-white/30 font-heading font-extrabold text-xs sm:text-sm italic text-brandYellow-300">
+                    “${escapeHtml(d.slogan || 'Your Memorable Slogan!')}”
+                  </div>
+
+                  <p class="text-xs sm:text-sm text-white/95 max-w-md mx-auto leading-relaxed">
+                    ${escapeHtml(d.description || 'Write your persuasive product description here.')}
+                  </p>
+
+                  <div class="bg-black/20 rounded-2xl p-2.5 text-xs font-extrabold text-amber-200">
+                    🌟 ${escapeHtml(d.persuasive || 'Special Offer & Persuasive Words!')}
+                  </div>
+
+                  <div class="pt-1">
+                    <div class="inline-block px-6 py-3 rounded-2xl ${t.accent} font-heading font-black text-xs sm:text-sm shadow-lg uppercase tracking-wide">
+                      ${escapeHtml(d.cta || 'ORDER NOW!')}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Reference Poster Mini Tip -->
+                <div class="mt-4 p-3.5 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-between gap-3">
+                  <div class="text-xs text-slate-700">
+                    <strong class="text-brandBlue-800">💡 Presentation Tip:</strong> Click <em>"Present My Ad (TTS)"</em> to practice pronouncing your English poster before presenting in class!
+                  </div>
+                  <button onclick="markStepCompleted('praktikum'); showToast('✅ Poster marked as completed!', 'success')" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs whitespace-nowrap">
+                    ✅ Complete Step
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updatePosterField(field, value) {
+      appState.posterDraft[field] = value;
+      saveState();
+      // Re-render only the preview card smoothly without losing input focus
+      const d = appState.posterDraft;
+      const themes = {
+        blue: { bg: 'from-brandBlue-700 via-brandBlue-600 to-sky-500', accent: 'bg-brandYellow-400 text-slate-900', border: 'border-brandYellow-400' },
+        orange: { bg: 'from-brandOrange-600 via-orange-500 to-amber-500', accent: 'bg-white text-brandOrange-700', border: 'border-yellow-300' },
+        emerald: { bg: 'from-emerald-700 via-teal-600 to-cyan-500', accent: 'bg-brandYellow-300 text-slate-900', border: 'border-brandYellow-300' },
+        dark: { bg: 'from-slate-900 via-blue-950 to-indigo-900', accent: 'bg-brandOrange-500 text-white', border: 'border-sky-400' }
+      };
+      const t = themes[d.theme] || themes.blue;
+      const preview = document.getElementById('student-poster-printable');
+      if (preview) {
+        preview.className = `rounded-3xl bg-gradient-to-br ${t.bg} text-white p-6 sm:p-7 shadow-2xl border-4 ${t.border} text-center space-y-4`;
+        preview.innerHTML = `
+          <div class="flex justify-between items-center text-[10px] font-extrabold uppercase tracking-wider opacity-90">
+            <span>✨ ${escapeHtml(d.productName || 'YOUR BRAND')}</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-white/20">For: ${escapeHtml(d.audience || 'Everyone')}</span>
+          </div>
+          <h3 class="font-heading font-black text-2xl sm:text-3xl tracking-tight leading-tight drop-shadow">
+            ${escapeHtml(d.headline || 'YOUR CATCHY HEADLINE HERE!')}
+          </h3>
+          <div class="max-w-xs mx-auto bg-white rounded-2xl p-2 shadow-lg">
+            ${getAdSVG(d.category)}
+          </div>
+          <div class="inline-block px-4 py-1.5 rounded-full bg-white/15 border border-white/30 font-heading font-extrabold text-xs sm:text-sm italic text-brandYellow-300">
+            “${escapeHtml(d.slogan || 'Your Memorable Slogan!')}”
+          </div>
+          <p class="text-xs sm:text-sm text-white/95 max-w-md mx-auto leading-relaxed">
+            ${escapeHtml(d.description || 'Write your persuasive product description here.')}
+          </p>
+          <div class="bg-black/20 rounded-2xl p-2.5 text-xs font-extrabold text-amber-200">
+            🌟 ${escapeHtml(d.persuasive || 'Special Offer & Persuasive Words!')}
+          </div>
+          <div class="pt-1">
+            <div class="inline-block px-6 py-3 rounded-2xl ${t.accent} font-heading font-black text-xs sm:text-sm shadow-lg uppercase tracking-wide">
+              ${escapeHtml(d.cta || 'ORDER NOW!')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function readStudentPosterAloud() {
+      const d = appState.posterDraft;
+      const script = `Hello everyone! Let me present our advertisement for ${d.productName}. ${d.headline}. ${d.slogan}. ${d.description}. ${d.persuasive}. Specially made for ${d.audience}. ${d.cta}`;
+      speakText(script, 'en-US');
+    }
+
+    function saveAndPrintPoster() {
+      markStepCompleted('praktikum');
+      printElement('student-poster-printable');
+    }
+
+    /* -------------------- F. GAME PAGE (4 INTERACTIVE MINI-GAMES) -------------------- */
+    let activeGame = 1;
+    let gameTimerInterval = null;
+    let gameState = {
+      timeLeft: 60,
+      score: 0,
+      step: 0,
+      finished: false,
+      feedback: '',
+      // Game 2 matching
+      selectedEn: null,
+      matchedPairs: [],
+      shuffledId: [],
+      // Game 3 word arrangement
+      scrambledWords: [],
+      builtWords: []
+    };
+
+    function clearGameTimer() {
+      if (gameTimerInterval) {
+        clearInterval(gameTimerInterval);
+        gameTimerInterval = null;
+      }
+    }
+
+    function startGame(gameNum) {
+      clearGameTimer();
+      activeGame = gameNum;
+      gameState = {
+        timeLeft: 60,
+        score: 0,
+        step: 0,
+        finished: false,
+        feedback: '',
+        selectedEn: null,
+        matchedPairs: [],
+        shuffledId: [...GAME2_PAIRS].sort(() => Math.random() - 0.5),
+        scrambledWords: [...GAME3_SLOGANS[0].words].sort(() => Math.random() - 0.5),
+        builtWords: []
+      };
+
+      gameTimerInterval = setInterval(() => {
+        if (appState.currentPage !== 'game' || gameState.finished) {
+          clearGameTimer();
+          return;
+        }
+        gameState.timeLeft--;
+        const timerEl = document.getElementById('game-timer-display');
+        if (timerEl) timerEl.textContent = gameState.timeLeft + 's';
+        if (gameState.timeLeft <= 0) {
+          finishActiveGame();
+        }
+      }, 1000);
+
+      renderCurrentPage();
+    }
+
+    function finishActiveGame() {
+      clearGameTimer();
+      gameState.finished = true;
+      markStepCompleted(`game_${activeGame}`);
+      playSFX('win');
+      renderCurrentPage();
+    }
+
+    function renderGamePage() {
+      const stars = gameState.score >= 80 ? '⭐⭐⭐' : gameState.score >= 40 ? '⭐⭐' : '⭐';
+
+      return `
+        <div class="page-enter max-w-5xl mx-auto">
+          <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-brandBlue-600">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-slate-100">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-extrabold">🎮 GAMIFIED LEARNING ZONE</span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-900 mt-1">ADVERTISEMENT GAMES</h2>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="px-3.5 py-2 rounded-2xl bg-brandOrange-100 text-brandOrange-800 font-heading font-extrabold text-xs sm:text-sm">
+                  ⏱️ Time: <span id="game-timer-display">${gameState.timeLeft}s</span>
+                </div>
+                <div class="px-3.5 py-2 rounded-2xl bg-brandYellow-300 text-slate-900 font-heading font-extrabold text-xs sm:text-sm">
+                  🏆 Score: ${gameState.score}
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 Game Selector Tabs -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 my-4">
+              ${[
+                { id: 1, name: 'GAME 1: Guess The Ad', icon: '🖼️' },
+                { id: 2, name: 'GAME 2: Match Words', icon: '🔗' },
+                { id: 3, name: 'GAME 3: Arrange Slogan', icon: '🧩' },
+                { id: 4, name: 'GAME 4: Ad Trivia Quiz', icon: '⚡' }
+              ].map(g => `
+                <button onclick="startGame(${g.id})" class="p-3 rounded-2xl text-xs font-extrabold transition border-2 flex items-center justify-center gap-1.5 ${
+                  activeGame === g.id
+                    ? 'bg-brandBlue-600 text-white border-brandBlue-700 shadow-md'
+                    : appState.completedSteps['game_' + g.id]
+                    ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-blue-50'
+                }">
+                  <span>${g.icon}</span><span>${g.name}</span>
+                </button>
+              `).join('')}
+            </div>
+
+            <!-- Game Arena -->
+            <div class="mt-4 bg-gradient-to-br from-blue-50 via-white to-amber-50 p-5 sm:p-7 rounded-3xl border-2 border-blue-200 min-h-[320px]">
+              ${gameState.finished ? `
+                <div class="text-center py-6 space-y-4">
+                  <div class="text-5xl">${stars}</div>
+                  <h3 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-900">GAME COMPLETED!</h3>
+                  <p class="text-sm sm:text-base font-bold text-slate-600">Final Score: <span class="text-brandOrange-600 font-black text-xl">${gameState.score} Points</span></p>
+                  <button onclick="startGame(${activeGame})" class="px-6 py-3 rounded-2xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-heading font-bold text-sm shadow-lg">
+                    🔄 Play Again
+                  </button>
+                </div>
+              ` : renderActiveGameBody()}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderActiveGameBody() {
+      if (activeGame === 1) {
+        const item = GAME1_ITEMS[gameState.step];
+        return `
+          <div class="max-w-xl mx-auto text-center space-y-4">
+            <span class="text-xs font-extrabold text-brandOrange-600">ROUND ${gameState.step + 1} OF ${GAME1_ITEMS.length}</span>
+            <h3 class="font-heading font-extrabold text-lg sm:text-xl text-brandBlue-900">Guess the Advertised Product!</h3>
+            <div class="max-w-xs mx-auto bg-white p-2 rounded-2xl shadow">${getAdSVG(item.svg)}</div>
+            <p class="text-xs sm:text-sm font-bold text-slate-700 italic bg-white p-3 rounded-xl border border-blue-100">${item.clue}</p>
+            <div class="grid sm:grid-cols-2 gap-2.5">
+              ${item.options.map((opt, idx) => `
+                <button onclick="handleGame1Answer(${idx})" class="p-3 rounded-xl bg-white hover:bg-brandYellow-300 border-2 border-blue-200 font-bold text-xs sm:text-sm text-slate-800 transition shadow-sm">
+                  ${opt}
+                </button>
+              `).join('')}
+            </div>
+            ${gameState.feedback ? `<p class="text-xs font-extrabold text-brandBlue-700">${gameState.feedback}</p>` : ''}
+          </div>
+        `;
+      }
+
+      if (activeGame === 2) {
+        return `
+          <div class="max-w-3xl mx-auto space-y-4">
+            <div class="text-center">
+              <h3 class="font-heading font-extrabold text-lg sm:text-xl text-brandBlue-900">Match English Vocabulary with Indonesian Meaning!</h3>
+              <p class="text-xs text-slate-600 font-semibold">Click an English term on the left, then click its matching Indonesian meaning on the right.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <p class="text-xs font-extrabold text-brandBlue-700 text-center">🇬🇧 ENGLISH</p>
+                ${GAME2_PAIRS.map(p => {
+                  const matched = gameState.matchedPairs.includes(p.en);
+                  const selected = gameState.selectedEn === p.en;
+                  return `
+                    <button ${matched ? 'disabled' : ''} onclick="selectGame2En('${p.en}')" class="w-full p-3 rounded-xl border-2 text-xs sm:text-sm font-extrabold transition ${
+                      matched ? 'bg-emerald-100 border-emerald-400 text-emerald-800 opacity-70' :
+                      selected ? 'bg-brandYellow-300 border-brandOrange-500 text-slate-900 shadow' :
+                      'bg-white hover:bg-blue-50 border-blue-200 text-slate-800'
+                    }">
+                      ${matched ? '✅ ' : ''}${p.en}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+              <div class="space-y-2">
+                <p class="text-xs font-extrabold text-brandOrange-600 text-center">🇮🇩 INDONESIA</p>
+                ${gameState.shuffledId.map(p => {
+                  const matched = gameState.matchedPairs.includes(p.en);
+                  return `
+                    <button ${matched ? 'disabled' : ''} onclick="selectGame2Id('${p.en}')" class="w-full p-3 rounded-xl border-2 text-xs sm:text-sm font-extrabold transition ${
+                      matched ? 'bg-emerald-100 border-emerald-400 text-emerald-800 opacity-70' :
+                      'bg-white hover:bg-orange-50 border-orange-200 text-slate-800'
+                    }">
+                      ${matched ? '✅ ' : ''}${p.id}
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (activeGame === 3) {
+        const currentSlogan = GAME3_SLOGANS[gameState.step];
+        return `
+          <div class="max-w-2xl mx-auto text-center space-y-4">
+            <span class="text-xs font-extrabold text-brandOrange-600">SLOGAN ${gameState.step + 1} OF ${GAME3_SLOGANS.length}</span>
+            <h3 class="font-heading font-extrabold text-lg sm:text-xl text-brandBlue-900">Arrange the Words into a Catchy Slogan!</h3>
+            <p class="text-xs font-bold text-slate-600">${currentSlogan.hint}</p>
+
+            <!-- Built Answer Box -->
+            <div class="min-h-[60px] p-3 rounded-2xl bg-white border-2 border-dashed border-brandBlue-400 flex flex-wrap items-center justify-center gap-2">
+              ${gameState.builtWords.length === 0 ? '<span class="text-xs text-slate-400 font-semibold">Click the scrambled word tiles below...</span>' :
+                gameState.builtWords.map((w, idx) => `
+                  <button onclick="removeGame3Word(${idx})" class="px-3.5 py-2 rounded-xl bg-brandBlue-600 text-white font-heading font-bold text-xs sm:text-sm shadow">
+                    ${w} ✕
+                  </button>
+                `).join('')
+              }
+            </div>
+
+            <!-- Available Scrambled Tiles -->
+            <div class="flex flex-wrap justify-center gap-2 py-2">
+              ${gameState.scrambledWords.map((w, idx) => `
+                <button onclick="pickGame3Word(${idx})" class="px-4 py-2.5 rounded-xl bg-brandYellow-300 hover:bg-brandYellow-400 border-2 border-amber-400 text-slate-900 font-heading font-extrabold text-xs sm:text-sm shadow-sm transition">
+                  ${w}
+                </button>
+              `).join('')}
+            </div>
+
+            <div class="flex justify-center gap-3 pt-2">
+              <button onclick="resetGame3Current()" class="px-4 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-xs">↺ Clear</button>
+              <button onclick="checkGame3Slogan()" class="px-6 py-2.5 rounded-xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-heading font-bold text-xs sm:text-sm shadow">
+                ✅ Check Slogan
+              </button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (activeGame === 4) {
+        const qObj = GAME4_QUIZ[gameState.step];
+        return `
+          <div class="max-w-xl mx-auto space-y-4">
+            <div class="text-center">
+              <span class="text-xs font-extrabold text-brandOrange-600">QUESTION ${gameState.step + 1} OF ${GAME4_QUIZ.length}</span>
+              <h3 class="font-heading font-extrabold text-lg sm:text-xl text-brandBlue-900 mt-1">${qObj.q}</h3>
+            </div>
+            <div class="space-y-2.5">
+              ${qObj.options.map((opt, idx) => `
+                <button onclick="handleGame4Answer(${idx})" class="w-full p-3.5 rounded-2xl bg-white hover:bg-blue-50 border-2 border-blue-200 text-left text-xs sm:text-sm font-bold text-slate-800 transition shadow-sm">
+                  <span class="inline-block w-6 h-6 rounded-full bg-brandBlue-100 text-brandBlue-800 text-center leading-6 mr-2 font-extrabold">${String.fromCharCode(65 + idx)}</span>
+                  ${opt}
+                </button>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function handleGame1Answer(chosenIdx) {
+      const item = GAME1_ITEMS[gameState.step];
+      if (chosenIdx === item.answer) {
+        playSFX('correct');
+        gameState.score += 20;
+        showToast('✅ Correct! +20 pts', 'success');
+      } else {
+        playSFX('wrong');
+        showToast('❌ Wrong guess!', 'warning');
+      }
+      if (gameState.step < GAME1_ITEMS.length - 1) {
+        gameState.step++;
+        renderCurrentPage();
+      } else {
+        finishActiveGame();
+      }
+    }
+
+    function selectGame2En(enWord) {
+      playSFX('click');
+      gameState.selectedEn = enWord;
+      renderCurrentPage();
+    }
+
+    function selectGame2Id(targetEnKey) {
+      if (!gameState.selectedEn) {
+        showToast('Select an English word on the left first!', 'warning');
+        return;
+      }
+      if (gameState.selectedEn === targetEnKey) {
+        playSFX('correct');
+        gameState.matchedPairs.push(targetEnKey);
+        gameState.selectedEn = null;
+        gameState.score += 20;
+        showToast('✅ Matched! +20 pts', 'success');
+        if (gameState.matchedPairs.length === GAME2_PAIRS.length) {
+          finishActiveGame();
+          return;
+        }
+      } else {
+        playSFX('wrong');
+        gameState.selectedEn = null;
+        showToast('❌ Not a match! Try again.', 'warning');
+      }
+      renderCurrentPage();
+    }
+
+    function pickGame3Word(idx) {
+      playSFX('click');
+      const word = gameState.scrambledWords.splice(idx, 1)[0];
+      gameState.builtWords.push(word);
+      renderCurrentPage();
+    }
+
+    function removeGame3Word(idx) {
+      playSFX('click');
+      const word = gameState.builtWords.splice(idx, 1)[0];
+      gameState.scrambledWords.push(word);
+      renderCurrentPage();
+    }
+
+    function resetGame3Current() {
+      const target = GAME3_SLOGANS[gameState.step].words;
+      gameState.scrambledWords = [...target].sort(() => Math.random() - 0.5);
+      gameState.builtWords = [];
+      renderCurrentPage();
+    }
+
+    function checkGame3Slogan() {
+      const targetStr = GAME3_SLOGANS[gameState.step].words.join(' ');
+      const userStr = gameState.builtWords.join(' ');
+      if (userStr === targetStr) {
+        playSFX('correct');
+        gameState.score += 20;
+        showToast('🎉 Awesome Slogan! +20 pts', 'success');
+        if (gameState.step < GAME3_SLOGANS.length - 1) {
+          gameState.step++;
+          resetGame3Current();
+        } else {
+          finishActiveGame();
+        }
+      } else {
+        playSFX('wrong');
+        showToast('❌ Word order is not quite right. Try again!', 'warning');
+      }
+    }
+
+    function handleGame4Answer(idx) {
+      const qObj = GAME4_QUIZ[gameState.step];
+      if (idx === qObj.answer) {
+        playSFX('correct');
+        gameState.score += 20;
+        showToast('✅ Correct! +20 pts', 'success');
+      } else {
+        playSFX('wrong');
+        showToast('❌ Incorrect!', 'warning');
+      }
+      if (gameState.step < GAME4_QUIZ.length - 1) {
+        gameState.step++;
+        renderCurrentPage();
+      } else {
+        finishActiveGame();
+      }
+    }
+
+    /* -------------------- G. LKPD PAGE (2 INTERACTIVE WORKSHEETS) -------------------- */
+    let activeLkpdTab = 1;
+    let showLkpd1Key = false;
+
+    function renderLkpdPage() {
+      const l1 = appState.lkpd1;
+      const l2 = appState.lkpd2;
+
+      return `
+        <div class="page-enter max-w-5xl mx-auto">
+          <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-emerald-500">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-slate-100">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold">📝 LEMBAR KERJA PESERTA DIDIK (LKPD)</span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-900 mt-1">STUDENT WORKSHEETS</h2>
+              </div>
+              <button onclick="printLkpdSheet()" class="px-4 py-2.5 rounded-2xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-bold text-xs sm:text-sm shadow flex items-center gap-2">
+                <span>🖨️</span><span>PRINT LKPD</span>
+              </button>
+            </div>
+
+            <!-- LKPD Switcher -->
+            <div class="flex gap-2 my-4">
+              <button onclick="activeLkpdTab = 1; renderCurrentPage()" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold border-2 transition ${
+                activeLkpdTab === 1 ? 'bg-emerald-600 text-white border-emerald-700 shadow' : 'bg-slate-100 text-slate-700 border-slate-200'
+              }">
+                📄 LKPD 1: Analyzing Advertisement
+              </button>
+              <button onclick="activeLkpdTab = 2; renderCurrentPage()" class="px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold border-2 transition ${
+                activeLkpdTab === 2 ? 'bg-emerald-600 text-white border-emerald-700 shadow' : 'bg-slate-100 text-slate-700 border-slate-200'
+              }">
+                🎨 LKPD 2: Creating Advertisement
+              </button>
+            </div>
+
+            <!-- Printable Worksheet Container -->
+            <div id="lkpd-printable-area" class="bg-slate-50 p-5 sm:p-7 rounded-3xl border-2 border-slate-200 space-y-5">
+              ${activeLkpdTab === 1 ? `
+                <div class="border-b-2 border-slate-200 pb-4">
+                  <div class="flex flex-wrap justify-between items-center gap-2">
+                    <h3 class="font-heading font-black text-xl text-brandBlue-900">LKPD 1: ANALYZING ADVERTISEMENT</h3>
+                    <span class="text-xs font-bold text-slate-500">SMK Perintis • Kelas X Fase E</span>
+                  </div>
+                  <p class="text-xs text-slate-600 mt-1">
+                    <strong>Petunjuk Pengerjaan:</strong> Amati poster iklan <em>AeroRun Pro Sneakers</em> di bawah ini, lalu identifikasi 6 unsur iklannya pada kolom yang tersedia. Jawabanmu tersimpan otomatis!
+                  </p>
+                  <div class="grid sm:grid-cols-2 gap-3 mt-3">
+                    <input type="text" placeholder="Nama Lengkap Siswa..." value="${escapeHtml(l1.studentName)}" oninput="updateLkpd(1, 'studentName', this.value)" class="px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold" />
+                    <input type="text" placeholder="Kelas (Contoh: X TKJ 1)..." value="${escapeHtml(l1.studentClass)}" oninput="updateLkpd(1, 'studentClass', this.value)" class="px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold" />
+                  </div>
+                </div>
+
+                <!-- Sample Ad to Analyze -->
+                <div class="grid md:grid-cols-12 gap-5 items-center bg-white p-4 rounded-2xl border border-blue-200">
+                  <div class="md:col-span-5">${getAdSVG('shoes')}</div>
+                  <div class="md:col-span-7 space-y-1.5">
+                    <span class="px-2.5 py-0.5 rounded-full bg-brandOrange-100 text-brandOrange-800 text-[10px] font-extrabold">SAMPLE ADVERTISEMENT</span>
+                    <h4 class="font-heading font-black text-lg text-brandBlue-900">STEP INTO UNSTOPPABLE SPEED!</h4>
+                    <p class="text-xs font-extrabold text-brandOrange-600 italic">Slogan: “Run Lighter, Go Further!”</p>
+                    <p class="text-xs text-slate-700 leading-relaxed">
+                      Engineered with ultra-breathable mesh and cloud-foam cushioning for active teenagers, student athletes, and daily runners. Get <strong>25% Student Discount</strong> this month! Visit AeroRun Official Store today!
+                    </p>
+                  </div>
+                </div>
+
+                <!-- 6 Fillable Fields -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                  ${[
+                    { key: 'product', label: '1. Product Name (Nama Produk)', ph: 'e.g., AeroRun Pro Sneakers' },
+                    { key: 'headline', label: '2. Headline (Judul Utama)', ph: 'e.g., STEP INTO UNSTOPPABLE SPEED!' },
+                    { key: 'slogan', label: '3. Slogan', ph: 'e.g., Run Lighter, Go Further!' },
+                    { key: 'purpose', label: '4. Purpose (Tujuan Iklan)', ph: 'e.g., To persuade people to buy...' },
+                    { key: 'audience', label: '5. Target Audience (Sasaran)', ph: 'e.g., Active teenagers and runners' },
+                    { key: 'persuasive', label: '6. Persuasive Words (Kata Persuasif)', ph: 'e.g., Ultra-breathable, 25% discount...' }
+                  ].map(f => `
+                    <div>
+                      <label class="block text-xs font-extrabold text-brandBlue-800 mb-1">${f.label}</label>
+                      <input type="text" placeholder="${f.ph}" value="${escapeHtml(l1[f.key])}" oninput="updateLkpd(1, '${f.key}', this.value)" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none" />
+                    </div>
+                  `).join('')}
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 no-print">
+                  <button onclick="showLkpd1Key = !showLkpd1Key; renderCurrentPage()" class="px-4 py-2 rounded-xl bg-blue-100 hover:bg-blue-200 text-brandBlue-800 font-bold text-xs">
+                    ${showLkpd1Key ? '🙈 Hide Reference Answer' : '💡 Check Reference Answer'}
+                  </button>
+                  <button onclick="markStepCompleted('lkpd_1'); showToast('✅ LKPD 1 Saved & Completed!', 'success')" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow">
+                    💾 Save LKPD 1
+                  </button>
+                </div>
+
+                ${showLkpd1Key ? `
+                  <div class="p-4 rounded-2xl bg-blue-50 border border-blue-300 text-xs text-slate-700 space-y-1">
+                    <p class="font-extrabold text-brandBlue-900">✅ Reference Answer Key:</p>
+                    <p>1. <strong>Product:</strong> AeroRun Pro Sneakers | 2. <strong>Headline:</strong> STEP INTO UNSTOPPABLE SPEED! | 3. <strong>Slogan:</strong> Run Lighter, Go Further! | 4. <strong>Purpose:</strong> To persuade active teenagers and runners to buy AeroRun Pro Sneakers | 5. <strong>Target Audience:</strong> Active teenagers, student athletes, and daily runners | 6. <strong>Persuasive Words:</strong> Unstoppable, ultra-breathable, cloud-foam, 25% Student Discount.</p>
+                  </div>
+                ` : ''}
+              ` : `
+                <div class="border-b-2 border-slate-200 pb-4">
+                  <div class="flex flex-wrap justify-between items-center gap-2">
+                    <h3 class="font-heading font-black text-xl text-brandBlue-900">LKPD 2: CREATING ADVERTISEMENT</h3>
+                    <span class="text-xs font-bold text-slate-500">SMK Perintis • Kelas X Fase E</span>
+                  </div>
+                  <p class="text-xs text-slate-600 mt-1">
+                    <strong>Petunjuk Pengerjaan:</strong> Rancang konsep poster iklan Bahasa Inggris berdasarkan produk/jasa pilihanmu (boleh produk jurusan SMK-mu!). Ketik rancanganmu pada kolom di bawah ini lalu klik <strong>PRINT LKPD</strong>.
+                  </p>
+                  <div class="grid sm:grid-cols-2 gap-3 mt-3">
+                    <input type="text" placeholder="Nama Lengkap Siswa..." value="${escapeHtml(l2.studentName)}" oninput="updateLkpd(2, 'studentName', this.value)" class="px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold" />
+                    <input type="text" placeholder="Kelas (Contoh: X AKL 2)..." value="${escapeHtml(l2.studentClass)}" oninput="updateLkpd(2, 'studentClass', this.value)" class="px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs font-bold" />
+                  </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block text-xs font-extrabold text-brandBlue-800 mb-1">1. Chosen Product / Service Name</label>
+                    <input type="text" placeholder="e.g., Fresh Banana Chips / Laptop Cleaning Service" value="${escapeHtml(l2.product)}" oninput="updateLkpd(2, 'product', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-extrabold text-brandBlue-800 mb-1">2. Target Audience</label>
+                    <input type="text" placeholder="e.g., Students, teachers, office workers" value="${escapeHtml(l2.audience)}" oninput="updateLkpd(2, 'audience', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-extrabold text-brandBlue-800 mb-1">3. Headline</label>
+                    <input type="text" placeholder="Write a bold attention-grabbing headline..." value="${escapeHtml(l2.headline)}" oninput="updateLkpd(2, 'headline', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-extrabold text-brandBlue-800 mb-1">4. Catchy Slogan</label>
+                    <input type="text" placeholder="Write a short memorable slogan..." value="${escapeHtml(l2.slogan)}" oninput="updateLkpd(2, 'slogan', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold" />
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="block text-xs font-extrabold text-brandBlue-800 mb-1">5. Body Copy & Persuasive Expressions (Include Call to Action)</label>
+                    <textarea rows="3" placeholder="Describe your product advantages, discounts, and add a Call to Action like 'Order Now!'..." oninput="updateLkpd(2, 'body', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold">${escapeHtml(l2.body)}</textarea>
+                  </div>
+                  <div class="sm:col-span-2">
+                    <label class="block text-xs font-extrabold text-brandBlue-800 mb-1">6. Visual & Color Design Concept</label>
+                    <input type="text" placeholder="Describe what images, icons, and colors your poster will use..." value="${escapeHtml(l2.visual)}" oninput="updateLkpd(2, 'visual', this.value)" class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold" />
+                  </div>
+                </div>
+
+                <div class="flex justify-end pt-2 no-print">
+                  <button onclick="markStepCompleted('lkpd_2'); showToast('✅ LKPD 2 Saved & Completed!', 'success')" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow">
+                    💾 Save LKPD 2
+                  </button>
+                </div>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function updateLkpd(num, field, value) {
+      if (num === 1) appState.lkpd1[field] = value;
+      else appState.lkpd2[field] = value;
+      saveState();
+    }
+
+    function printLkpdSheet() {
+      markStepCompleted(`lkpd_${activeLkpdTab}`);
+      printElement('lkpd-printable-area');
+    }
+
+    /* -------------------- H. EVALUASI PAGE (10 MC + 5 ESSAY + PROJECT RUBRIC) -------------------- */
+    let evalState = {
+      section: 'mc', // 'mc', 'essay', 'rubric'
+      mcIndex: 0,
+      mcAnswers: Array(10).fill(null),
+      mcSubmitted: false,
+      essayAnswers: Array(5).fill(''),
+      showEssaySamples: false,
+      rubricScores: [4, 4, 4, 4] // 4 criteria out of 4 each -> max 16 -> converted to 100
+    };
+
+    function renderEvaluasiPage() {
+      return `
+        <div class="page-enter max-w-5xl mx-auto">
+          <div class="bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-brandOrange-500">
+            <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b-2 border-slate-100">
+              <div>
+                <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-extrabold">🏆 FINAL ASSESSMENT • EVALUASI PEMBELAJARAN</span>
+                <h2 class="font-heading font-black text-2xl sm:text-3xl text-brandBlue-900 mt-1">EVALUASI ADVERTISEMENT</h2>
+              </div>
+            </div>
+
+            <!-- Evaluation Section Tabs -->
+            <div class="grid grid-cols-3 gap-2 my-4">
+              <button onclick="evalState.section = 'mc'; renderCurrentPage()" class="p-3 rounded-2xl text-xs sm:text-sm font-extrabold border-2 transition ${
+                evalState.section === 'mc' ? 'bg-brandBlue-600 text-white border-brandBlue-700 shadow' : 'bg-slate-50 text-slate-700 border-slate-200'
+              }">
+                1️⃣ Pilihan Ganda (10 Soal)
+              </button>
+              <button onclick="evalState.section = 'essay'; renderCurrentPage()" class="p-3 rounded-2xl text-xs sm:text-sm font-extrabold border-2 transition ${
+                evalState.section === 'essay' ? 'bg-brandBlue-600 text-white border-brandBlue-700 shadow' : 'bg-slate-50 text-slate-700 border-slate-200'
+              }">
+                2️⃣ Soal Uraian (5 Soal)
+              </button>
+              <button onclick="evalState.section = 'rubric'; renderCurrentPage()" class="p-3 rounded-2xl text-xs sm:text-sm font-extrabold border-2 transition ${
+                evalState.section === 'rubric' ? 'bg-brandBlue-600 text-white border-brandBlue-700 shadow' : 'bg-slate-50 text-slate-700 border-slate-200'
+              }">
+                3️⃣ Rubrik Proyek Poster
+              </button>
+            </div>
+
+            ${evalState.section === 'mc' ? renderEvalMC() : evalState.section === 'essay' ? renderEvalEssay() : renderEvalRubric()}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderEvalMC() {
+      if (evalState.mcSubmitted) {
+        let correctCount = 0;
+        EVALUASI_MC.forEach((q, i) => {
+          if (evalState.mcAnswers[i] === q.correct) correctCount++;
+        });
+        const wrongCount = EVALUASI_MC.length - correctCount;
+        // Formula: Nilai = (Jumlah Jawaban Benar / Jumlah Soal) x 100
+        const finalScore = Math.round((correctCount / EVALUASI_MC.length) * 100);
+        let predicate = 'Perlu Bimbingan (Needs Guidance)';
+        let badgeColor = 'bg-red-100 text-red-800 border-red-300';
+        if (finalScore >= 90) {
+          predicate = 'Sangat Baik (Excellent / A)';
+          badgeColor = 'bg-emerald-100 text-emerald-900 border-emerald-400';
+        } else if (finalScore >= 75) {
+          predicate = 'Baik (Good / B)';
+          badgeColor = 'bg-blue-100 text-blue-900 border-blue-400';
+        } else if (finalScore >= 60) {
+          predicate = 'Cukup (Fair / C)';
+          badgeColor = 'bg-amber-100 text-amber-900 border-amber-400';
+        }
+
+        return `
+          <div class="space-y-6">
+            <!-- Score Summary Card -->
+            <div class="bg-gradient-to-br from-blue-50 via-white to-amber-50 p-6 rounded-3xl border-2 border-brandBlue-300 text-center space-y-3">
+              <div class="text-4xl">🎓</div>
+              <h3 class="font-heading font-black text-2xl text-brandBlue-900">HASIL EVALUASI PILIHAN GANDA</h3>
+              <div class="font-heading font-black text-5xl text-brandOrange-600">${finalScore}</div>
+              <div class="inline-block px-4 py-1.5 rounded-full border-2 font-extrabold text-xs sm:text-sm ${badgeColor}">
+                Predikat: ${predicate}
+              </div>
+              <div class="flex justify-center gap-6 pt-2 text-xs sm:text-sm font-extrabold">
+                <span class="text-emerald-700">✅ Benar: ${correctCount}</span>
+                <span class="text-red-600">❌ Salah: ${wrongCount}</span>
+                <span class="text-slate-600">📋 Total Soal: ${EVALUASI_MC.length}</span>
+              </div>
+              <div class="pt-3">
+                <button onclick="retakeEvalTest()" class="px-6 py-3 rounded-2xl bg-brandOrange-500 hover:bg-brandOrange-600 text-white font-heading font-bold text-xs sm:text-sm shadow-lg">
+                  🔄 RETAKE TEST
+                </button>
+              </div>
+            </div>
+
+            <!-- Detailed Answer Key & Explanations -->
+            <div class="space-y-3">
+              <h4 class="font-heading font-extrabold text-base text-brandBlue-900">📖 Pembahasan Setiap Jawaban:</h4>
+              ${EVALUASI_MC.map((q, idx) => {
+                const userAns = evalState.mcAnswers[idx];
+                const isCorrect = userAns === q.correct;
+                return `
+                  <div class="p-4 rounded-2xl border-2 ${isCorrect ? 'bg-emerald-50/70 border-emerald-300' : 'bg-red-50/70 border-red-300'}">
+                    <p class="font-bold text-xs sm:text-sm text-slate-900">${q.q}</p>
+                    <p class="text-xs mt-1 font-bold ${isCorrect ? 'text-emerald-800' : 'text-red-700'}">
+                      Jawabanmu: ${userAns !== null ? String.fromCharCode(65 + userAns) + '. ' + q.options[userAns] : 'Tidak dijawab'}
+                      ${isCorrect ? ' ✅' : ' ❌'}
+                    </p>
+                    ${!isCorrect ? `<p class="text-xs font-extrabold text-emerald-800 mt-0.5">Kunci Jawaban: ${String.fromCharCode(65 + q.correct)}. ${q.options[q.correct]}</p>` : ''}
+                    <p class="text-xs text-slate-600 mt-1 italic">Pembahasan: ${q.explanation}</p>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      const idx = evalState.mcIndex;
+      const qObj = EVALUASI_MC[idx];
+      const answeredCount = evalState.mcAnswers.filter(a => a !== null).length;
+
+      return `
+        <div class="space-y-5">
+          <!-- Question Number Pills -->
+          <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-50 p-3 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap gap-1.5">
+              ${EVALUASI_MC.map((_, i) => `
+                <button onclick="evalState.mcIndex = ${i}; renderCurrentPage()" class="w-8 h-8 rounded-xl text-xs font-extrabold transition ${
+                  i === idx ? 'bg-brandOrange-500 text-white shadow scale-105' :
+                  evalState.mcAnswers[i] !== null ? 'bg-brandBlue-600 text-white' :
+                  'bg-white border border-slate-300 text-slate-600'
+                }">
+                  ${i + 1}
+                </button>
+              `).join('')}
+            </div>
+            <span class="text-xs font-extrabold text-slate-600">Terjawab: ${answeredCount}/10</span>
+          </div>
+
+          <!-- Single Question Card (1 Question per Page) -->
+          <div class="bg-blue-50/60 p-5 sm:p-7 rounded-3xl border-2 border-brandBlue-200">
+            <span class="text-xs font-extrabold text-brandOrange-600 uppercase">Soal ${idx + 1} dari 10</span>
+            <h3 class="font-heading font-extrabold text-base sm:text-xl text-slate-900 mt-1 mb-5">${qObj.q}</h3>
+
+            <div class="space-y-2.5">
+              ${qObj.options.map((opt, oIdx) => {
+                const selected = evalState.mcAnswers[idx] === oIdx;
+                return `
+                  <button onclick="selectEvalMcOption(${idx}, ${oIdx})" class="w-full p-3.5 rounded-2xl border-2 text-left text-xs sm:text-sm font-bold transition flex items-center gap-3 ${
+                    selected ? 'bg-brandBlue-600 text-white border-brandBlue-700 shadow-md' : 'bg-white hover:bg-blue-50 text-slate-800 border-slate-200'
+                  }">
+                    <span class="w-7 h-7 rounded-full flex items-center justify-center font-extrabold shrink-0 ${
+                      selected ? 'bg-brandYellow-400 text-slate-900' : 'bg-slate-100 text-slate-700'
+                    }">
+                      ${String.fromCharCode(65 + oIdx)}
+                    </span>
+                    <span>${opt}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          <!-- Prev / Next / Submit Buttons -->
+          <div class="flex items-center justify-between">
+            <button ${idx === 0 ? 'disabled' : ''} onclick="evalState.mcIndex--; renderCurrentPage()" class="px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm ${
+              idx === 0 ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-slate-200 hover:bg-slate-300 text-slate-800'
+            }">
+              ⬅️ Soal Sebelumnya
+            </button>
+
+            ${idx < EVALUASI_MC.length - 1 ? `
+              <button onclick="evalState.mcIndex++; renderCurrentPage()" class="px-5 py-2.5 rounded-xl bg-brandBlue-600 hover:bg-brandBlue-700 text-white font-bold text-xs sm:text-sm shadow">
+                Soal Berikutnya ➡️
+              </button>
+            ` : `
+              <button onclick="submitEvalMC()" class="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-heading font-extrabold text-xs sm:text-sm shadow-lg">
+                ✅ Selesai & Lihat Nilai
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectEvalMcOption(qIdx, oIdx) {
+      playSFX('click');
+      evalState.mcAnswers[qIdx] = oIdx;
+      renderCurrentPage();
+    }
+
+    function submitEvalMC() {
+      evalState.mcSubmitted = true;
+      markStepCompleted('evaluasi');
+      playSFX('win');
+      renderCurrentPage();
+    }
+
+    function retakeEvalTest() {
+      evalState.mcIndex = 0;
+      evalState.mcAnswers = Array(10).fill(null);
+      evalState.mcSubmitted = false;
+      renderCurrentPage();
+    }
+
+    function renderEvalEssay() {
+      return `
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 bg-amber-50 p-4 rounded-2xl border border-amber-300">
+            <p class="text-xs sm:text-sm font-bold text-amber-900">✍️ Jawablah 5 pertanyaan uraian berikut dengan menggunakan Bahasa Inggris yang baik dan benar.</p>
+            <button onclick="evalState.showEssaySamples = !evalState.showEssaySamples; renderCurrentPage()" class="px-4 py-2 rounded-xl bg-brandBlue-600 text-white font-bold text-xs shadow">
+              ${evalState.showEssaySamples ? '🙈 Sembunyikan Kunci Uraian' : '💡 Lihat Pedoman Jawaban'}
+            </button>
+          </div>
+
+          ${EVALUASI_ESSAY.map((item, i) => `
+            <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+              <label class="block font-bold text-xs sm:text-sm text-slate-900">${item.q}</label>
+              <textarea rows="2" oninput="evalState.essayAnswers[${i}] = this.value" placeholder="Type your answer in English..." class="w-full px-3 py-2 rounded-xl border border-slate-300 bg-white text-xs sm:text-sm font-semibold">${escapeHtml(evalState.essayAnswers[i])}</textarea>
+              ${evalState.showEssaySamples ? `
+                <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-300 text-xs text-emerald-900">
+                  <strong>Sample Answer:</strong> ${item.sample}
+                </div>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderEvalRubric() {
+      const criteria = [
+        { name: '1. Generic Structure Completeness', desc: 'Includes Headline, Illustration, Body Copy, Product Info, and Call to Action.' },
+        { name: '2. Persuasive Language & Slogan', desc: 'Uses catchy slogan, positive adjectives, and clear imperative sentences.' },
+        { name: '3. Grammar & Vocabulary Accuracy', desc: 'Accurate use of Simple Present Tense and appropriate English vocabulary.' },
+        { name: '4. Visual Creativity & Layout', desc: 'Attractive color harmony, clear typography, and relevant product illustration.' }
+      ];
+      const rawTotal = evalState.rubricScores.reduce((a, b) => a + b, 0);
+      const projectScore = Math.round((rawTotal / 16) * 100);
+
+      return `
+        <div class="space-y-4">
+          <div class="bg-blue-50 p-4 rounded-2xl border border-blue-200 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h3 class="font-heading font-extrabold text-base text-brandBlue-900">📊 Rubrik Penilaian Proyek Pembuatan Poster Iklan</h3>
+              <p class="text-xs text-slate-600">Pilih skor 1–4 pada setiap aspek untuk menghitung nilai proyek poster (Menu Praktikum / LKPD 2).</p>
+            </div>
+            <div class="px-4 py-2 rounded-2xl bg-brandOrange-500 text-white font-heading font-black text-base shadow">
+              Nilai Proyek: ${projectScore} / 100
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            ${criteria.map((c, idx) => `
+              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                  <h4 class="font-bold text-xs sm:text-sm text-slate-900">${c.name}</h4>
+                  <p class="text-xs text-slate-600">${c.desc}</p>
+                </div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  ${[1, 2, 3, 4].map(score => `
+                    <button onclick="evalState.rubricScores[${idx}] = ${score}; renderCurrentPage()" class="w-9 h-9 rounded-xl font-extrabold text-xs border-2 transition ${
+                      evalState.rubricScores[idx] === score
+                        ? 'bg-brandBlue-600 text-white border-brandBlue-700 shadow'
+                        : 'bg-white text-slate-700 border-slate-300 hover:bg-blue-50'
+                    }">
+                      ${score}
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    /* -------------------- I. PENGEMBANG PAGE -------------------- */
+    function renderPengembangPage() {
+      return `
+        <div class="page-enter max-w-4xl mx-auto">
+          <div class="bg-white rounded-3xl overflow-hidden shadow-xl border-4 border-brandBlue-600">
+            <div class="bg-gradient-to-r from-brandBlue-700 via-brandBlue-600 to-sky-500 p-6 sm:p-8 text-white text-center">
+              <div class="w-24 h-24 mx-auto rounded-full bg-brandYellow-400 border-4 border-white shadow-lg flex items-center justify-center text-5xl">
+                👩‍🏫
+              </div>
+              <span class="inline-block mt-3 px-3 py-1 rounded-full bg-white/20 text-brandYellow-300 text-xs font-extrabold uppercase tracking-wider">
+                PROFIL PENGEMBANG MEDIA
+              </span>
+              <h2 class="font-heading font-black text-2xl sm:text-3xl mt-1">Intan Liana, S.Pd.</h2>
+              <p class="text-sm text-blue-100 font-semibold">English Teacher • SMK Perintis</p>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+              <div class="grid sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                <div class="p-3.5 rounded-2xl bg-blue-50 border border-blue-200">
+                  <span class="text-slate-500 font-bold block">Nama Pengembang:</span>
+                  <strong class="text-brandBlue-900 text-base">Intan Liana, S.Pd.</strong>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-orange-50 border border-orange-200">
+                  <span class="text-slate-500 font-bold block">Profesi & Instansi:</span>
+                  <strong class="text-brandOrange-700 text-base">English Teacher — SMK Perintis</strong>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200">
+                  <span class="text-slate-500 font-bold block">Nama Media Pembelajaran:</span>
+                  <strong class="text-amber-900 text-base">ADVERTISEMENT WORLD</strong>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200">
+                  <span class="text-slate-500 font-bold block">Mata Pelajaran / Materi / Sasaran:</span>
+                  <strong class="text-emerald-900 text-base">Bahasa Inggris • Advertisement • Kelas X Fase E</strong>
+                </div>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-50 border-2 border-slate-200 space-y-2">
+                <h3 class="font-heading font-extrabold text-base text-brandBlue-900">🎯 Tujuan Pengembangan Media Pembelajaran Interaktif</h3>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  Media Pembelajaran Interaktif (MPI) <strong>“ADVERTISEMENT WORLD – Learn English Through Advertising!”</strong> dikembangkan untuk menghadirkan pengalaman belajar Bahasa Inggris yang kontekstual, menyenangkan, dan bermakna bagi peserta didik kelas X SMK/SMA Fase E sesuai prinsip <strong>Kurikulum Merdeka</strong>.
+                </p>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  Melalui integrasi ilustrasi iklan visual, fitur audio pelafalan (<em>Text-to-Speech</em>), simulasi analisis iklan interaktif, studio pembuatan poster mandiri, permainan edukatif, serta LKPD dan evaluasi otomatis, siswa diharapkan mampu memahami struktur dan unsur kebahasaan teks iklan sekaligus mengasah kreativitas komunikasi bisnis dalam Bahasa Inggris.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Initialize Application
+    renderCurrentPage();
+    updateProgressUI();
+  </script>
+</body>
+</html>
